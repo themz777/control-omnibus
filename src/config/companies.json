@@ -1,0 +1,9 @@
+[
+  { "name": "Guaireña", "active": true, "logo": "guairena.png.jpeg" },
+  { "name": "Itapua Poty", "active": true, "logo": "itapua_poty.png.jpeg" },
+  { "name": "Crucero del Sur", "active": true, "logo": "crucero_del_sur.png.jpeg" },
+  { "name": "Nuestra Señora de la Encarnación", "active": true, "logo": "encarnacion.png.jpeg" },
+  { "name": "San Juan SRL", "active": true, "logo": "san_juan.png.jpeg" },
+  { "name": "Cometa del Amambay", "active": true, "logo": "cometa_amambay.png.jpeg" }
+]
+

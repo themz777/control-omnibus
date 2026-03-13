@@ -1,0 +1,101 @@
+[
+  {
+    "id": "notif_a1735a22-925d-4df3-8be6-2fba2dcad869",
+    "timestamp": "2026-03-09T09:30:27.425Z",
+    "recordId": "trip_fef48011-e367-4454-84b7-15f63c679315",
+    "tipo": "WHATSAPP",
+    "motivo": "ATRASO",
+    "destinatario": "595981234567",
+    "nombrePasajero": "Carlos Gomez",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Carlos Gomez, su viaje con Guaireña desde Ciudad del Este hacia Asunción presenta un atraso de 15 minutos. Salida programada: 2030-12-31 14:30."
+  },
+  {
+    "id": "notif_9ee3e9e7-6a48-413b-a073-1f89c798d1dd",
+    "timestamp": "2026-03-11T00:15:18.853Z",
+    "recordId": "trip_5377cd2c-196f-4b50-97b3-e90df5e9f383",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "255555555555",
+    "nombrePasajero": "Carlos",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Carlos, le recordamos su viaje con Crucero del Sur desde Cuidad del Este hacia Asuncion el 2026-03-10 a las 21:16. Andén: Por confirmar."
+  },
+  {
+    "id": "notif_0447147c-770a-4310-9729-d49144f3de31",
+    "timestamp": "2026-03-11T00:26:19.053Z",
+    "recordId": "trip_f5213c7f-f76b-4b7a-bddd-44a7fb27ed35",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "255555555555",
+    "nombrePasajero": "Carlos",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Carlos, le recordamos su viaje con Crucero del Sur desde Cuidad del Este hacia Asuncion el 2026-03-10 a las 21:29. Andén: Por confirmar."
+  },
+  {
+    "id": "notif_2442daab-1dc0-4809-8b75-5b686b8187a4",
+    "timestamp": "2026-03-11T00:59:26.171Z",
+    "recordId": "trip_eec9c336-bddb-4899-afe4-a108816d75eb",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "255555555555",
+    "nombrePasajero": "Carlos",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Carlos, le recordamos su viaje con Crucero del Sur desde Cuidad del Este hacia Asuncion el 2026-03-10 a las 22:10. Andén: Por confirmar."
+  },
+  {
+    "id": "notif_1064208b-f96e-48c7-9aa7-c2c09efad175",
+    "timestamp": "2026-03-13T00:33:31.818Z",
+    "recordId": "trip_298cf092-1bd0-4d9c-9f6e-dc38d81e4a07",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "255555555555",
+    "nombrePasajero": "Carlos",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Carlos, le recordamos su viaje con Itapua Poty desde Cuidad del Este hacia Asuncion el 2026-03-12 a las 21:44. Andén: Por confirmar."
+  },
+  {
+    "id": "notif_31de9d9d-6935-44ed-b7e6-1fad734f6d77",
+    "timestamp": "2026-03-13T00:49:41.194Z",
+    "recordId": "trip_eec9c336-bddb-4899-afe4-a108816d75eb",
+    "tipo": "WHATSAPP",
+    "motivo": "CANCELACION",
+    "destinatario": "255555555555",
+    "nombrePasajero": "Carlos",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Carlos, le informamos que su viaje con Crucero del Sur desde Cuidad del Este hacia Asuncion, programado para el 2026-03-10 a las 22:10, ha sido cancelado."
+  },
+  {
+    "id": "notif_7cdfecb7-ecf0-42ec-baf3-7c2ef9be6e42",
+    "timestamp": "2026-03-13T21:09:44.917Z",
+    "recordId": "trip_78bfeecb-7d35-40c7-b89b-0cb4cf54d4cd",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "12345678910",
+    "nombrePasajero": "Alex Gay",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Alex Gay, le recordamos su viaje con Crucero del Sur desde Ciudad del Este hacia Asuncion el 2026-03-13 a las 18:20. Andén: Por confirmar."
+  },
+  {
+    "id": "notif_aee01f81-2ab7-4c4e-abed-4a1d73e694b0",
+    "timestamp": "2026-03-13T21:18:45.071Z",
+    "recordId": "trip_e4faa661-b48d-44cc-8cc7-042e2726899f",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "12345678910",
+    "nombrePasajero": "Alex Gay",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Alex Gay, le recordamos su viaje con San Juan SRL desde Ciudad del Este hacia Asuncion el 2026-03-13 a las 18:28. Andén: Por confirmar."
+  },
+  {
+    "id": "notif_b97015d6-42ed-475c-a94d-903f09223c38",
+    "timestamp": "2026-03-13T21:28:15.220Z",
+    "recordId": "trip_e4faa661-b48d-44cc-8cc7-042e2726899f",
+    "tipo": "WHATSAPP",
+    "motivo": "CANCELACION",
+    "destinatario": "12345678910",
+    "nombrePasajero": "Alex Gay",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Alex Gay, le informamos que su viaje con San Juan SRL desde Ciudad del Este hacia Asuncion, programado para el 2026-03-13 a las 18:28, ha sido cancelado."
+  }
+]

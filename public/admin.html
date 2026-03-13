@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Sistema Terminal CDE</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body class="admin-body">
+  <header class="topbar">
+    <div>
+      <h1>Panel Administrativo</h1>
+      <p class="subtitle">Gestión operativa y notificaciones al usuario</p>
+    </div>
+    <div class="topbar-actions">
+      <a class="btn btn-secondary" href="/display.html" target="_blank">Abrir panel público</a>
+      <button id="logoutBtn" class="btn btn-danger">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="admin-layout">
+    <section class="kpi-grid">
+      <div class="kpi-card"><span>Total viajes</span><strong id="kpiTotal">0</strong></div>
+      <div class="kpi-card"><span>En hora</span><strong id="kpiEnHora">0</strong></div>
+      <div class="kpi-card"><span>Atrasados</span><strong id="kpiAtrasados">0</strong></div>
+      <div class="kpi-card"><span>Cancelados</span><strong id="kpiCancelados">0</strong></div>
+      <div class="kpi-card"><span>Puntualidad promedio</span><strong id="kpiPuntualidad">0 min</strong></div>
+      <div class="kpi-card"><span>Alertas emitidas</span><strong id="kpiAlertas">0</strong></div>
+    </section>
+
+    <section class="panel-grid">
+      <div class="panel-card">
+        <div class="card-header"><h2 id="formTitle">Registrar viaje</h2></div>
+        <form id="recordForm" class="form-grid">
+          <input type="hidden" id="recordId" />
+
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <select id="empresa" required></select>
+          </div>
+          <div class="form-group">
+            <label for="origen">Origen</label>
+            <input type="text" id="origen" placeholder="Ciudad del Este" required />
+          </div>
+          <div class="form-group">
+            <label for="destino">Destino</label>
+            <input type="text" id="destino" placeholder="Asunción" required />
+          </div>
+          <div class="form-group">
+            <label for="fechaViaje">Fecha del viaje</label>
+            <input type="date" id="fechaViaje" required />
+          </div>
+          <div class="form-group">
+            <label for="horaProgramada">Hora programada</label>
+            <input type="time" id="horaProgramada" required />
+          </div>
+          <div class="form-group">
+            <label for="horaReal">Hora real</label>
+            <input type="time" id="horaReal" />
+          </div>
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <select id="estado">
+              <option value="PROGRAMADO">PROGRAMADO</option>
+              <option value="EMBARCANDO">EMBARCANDO</option>
+              <option value="EN_HORA">EN_HORA</option>
+              <option value="ATRASADO">ATRASADO</option>
+              <option value="CANCELADO">CANCELADO</option>
+              <option value="SALIO">SALIO</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="minutosAtrasoManual">Minutos de atraso manual</label>
+            <input type="number" id="minutosAtrasoManual" min="0" placeholder="0" />
+          </div>
+          <div class="form-group form-group-wide">
+            <label for="observacion">Observación</label>
+            <input type="text" id="observacion" placeholder="Ej.: Demora por tráfico" />
+          </div>
+          <div class="form-group">
+            <label for="nombrePasajero">Nombre del pasajero</label>
+            <input type="text" id="nombrePasajero" placeholder="Carlos Gómez" required />
+          </div>
+          <div class="form-group">
+            <label for="telefonoUsuario">WhatsApp del usuario</label>
+            <input type="text" id="telefonoUsuario" placeholder="595981234567" required />
+          </div>
+          <div class="form-actions form-group-wide">
+            <button type="submit" class="btn btn-primary">Guardar viaje</button>
+            <button type="button" id="cancelEditBtn" class="btn btn-secondary">Cancelar edición</button>
+          </div>
+        </form>
+        <p id="formMessage" class="message"></p>
+      </div>
+
+      <div class="panel-card">
+        <div class="card-header"><h2>Filtros</h2></div>
+        <div class="filters-grid">
+          <div class="form-group">
+            <label for="filterEmpresa">Empresa</label>
+            <select id="filterEmpresa"></select>
+          </div>
+          <div class="form-group">
+            <label for="filterEstado">Estado</label>
+            <select id="filterEstado">
+              <option value="">Todos</option>
+              <option value="PROGRAMADO">PROGRAMADO</option>
+              <option value="EMBARCANDO">EMBARCANDO</option>
+              <option value="EN_HORA">EN_HORA</option>
+              <option value="ATRASADO">ATRASADO</option>
+              <option value="CANCELADO">CANCELADO</option>
+              <option value="SALIO">SALIO</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel-card">
+      <div class="card-header"><h2>Viajes registrados</h2></div>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Empresa</th>
+              <th>Ruta</th>
+              <th>Fecha</th>
+              <th>Hora prog.</th>
+              <th>Hora real</th>
+              <th>Estado</th>
+              <th>Pasajero</th>
+              <th>WhatsApp</th>
+              <th>Puntualidad</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="recordsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="history-grid">
+      <div class="panel-card">
+        <div class="card-header"><h2>Historial reciente</h2></div>
+        <div id="historyList" class="list-block"></div>
+      </div>
+      <div class="panel-card">
+        <div class="card-header"><h2>Notificaciones recientes</h2></div>
+        <div id="notificationList" class="list-block"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/helpers.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

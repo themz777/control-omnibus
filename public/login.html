@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Sistema Terminal CDE</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <div class="login-card">
+      <h1>Sistema Terminal CDE</h1>
+      <p class="subtitle">Acceso administrativo</p>
+      <form id="loginForm" class="form-grid single-column">
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" name="username" placeholder="admin" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="******" required />
+        </div>
+        <button type="submit" class="btn btn-primary full-width">Ingresar</button>
+      </form>
+      <p id="loginMessage" class="message"></p>
+      <div class="login-links">
+        <a href="/display.html">Ir al panel público</a>
+      </div>
+    </div>
+  </div>
+  <script src="/js/api.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
+

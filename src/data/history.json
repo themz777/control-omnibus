@@ -1,0 +1,178 @@
+[
+  {
+    "id": "hist_35e42be8-22bb-427b-af28-e8577bfeb149",
+    "timestamp": "2026-03-09T09:30:16.506Z",
+    "recordId": "trip_fef48011-e367-4454-84b7-15f63c679315",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Guaireña Ciudad del Este → Asunción",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_8b087867-2597-410e-8126-0b4857783224",
+    "timestamp": "2026-03-09T09:30:25.304Z",
+    "recordId": "trip_fef48011-e367-4454-84b7-15f63c679315",
+    "accion": "ACTUALIZACION_VIAJE",
+    "descripcion": "Se actualizó el viaje Guaireña Ciudad del Este → Asunción",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_e176114c-c343-44e7-ae66-a8e8724806eb",
+    "timestamp": "2026-03-11T00:02:15.836Z",
+    "recordId": "trip_fef48011-e367-4454-84b7-15f63c679315",
+    "accion": "ELIMINACION_VIAJE",
+    "descripcion": "Se eliminó el viaje Guaireña Ciudad del Este → Asunción",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_8ed80d11-982a-4538-beb1-892f3d36c666",
+    "timestamp": "2026-03-11T00:15:09.208Z",
+    "recordId": "trip_5377cd2c-196f-4b50-97b3-e90df5e9f383",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_398fba92-c997-4124-9b22-83f6eeeb56bd",
+    "timestamp": "2026-03-11T00:25:13.276Z",
+    "recordId": "trip_5377cd2c-196f-4b50-97b3-e90df5e9f383",
+    "accion": "ELIMINACION_VIAJE",
+    "descripcion": "Se eliminó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_e5944de7-4e75-4810-ad9f-0ea94d789f94",
+    "timestamp": "2026-03-11T00:25:51.320Z",
+    "recordId": "trip_f5213c7f-f76b-4b7a-bddd-44a7fb27ed35",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_0f47022f-06ec-4645-840a-84838c8141ff",
+    "timestamp": "2026-03-11T00:58:11.483Z",
+    "recordId": "trip_e5a5cfeb-9444-4ad5-b64e-1549174f6ac9",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_10fab374-7174-41d0-b836-b9329bdff5cf",
+    "timestamp": "2026-03-11T00:59:20.050Z",
+    "recordId": "trip_eec9c336-bddb-4899-afe4-a108816d75eb",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_37d714a3-6e7f-42e1-8ca9-362d3a43fa95",
+    "timestamp": "2026-03-11T00:59:33.525Z",
+    "recordId": "trip_e5a5cfeb-9444-4ad5-b64e-1549174f6ac9",
+    "accion": "ELIMINACION_VIAJE",
+    "descripcion": "Se eliminó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_80d56087-1a8c-468d-8ec9-109d3861a920",
+    "timestamp": "2026-03-11T00:59:37.266Z",
+    "recordId": "trip_f5213c7f-f76b-4b7a-bddd-44a7fb27ed35",
+    "accion": "ELIMINACION_VIAJE",
+    "descripcion": "Se eliminó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_5d6e4f74-d000-41c2-bbb9-cf1fea7d8898",
+    "timestamp": "2026-03-13T00:31:00.771Z",
+    "recordId": "trip_88ce7085-2450-462a-9fe9-d946f11b9499",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_f43a8572-8284-483a-ad10-2657739659cf",
+    "timestamp": "2026-03-13T00:31:52.607Z",
+    "recordId": "trip_88ce7085-2450-462a-9fe9-d946f11b9499",
+    "accion": "ELIMINACION_VIAJE",
+    "descripcion": "Se eliminó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_25052955-f7dd-4915-b10d-e6660310de00",
+    "timestamp": "2026-03-13T00:33:00.633Z",
+    "recordId": "trip_298cf092-1bd0-4d9c-9f6e-dc38d81e4a07",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Itapua Poty Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_1916cd44-660a-42b2-8b5d-4041e785bad8",
+    "timestamp": "2026-03-13T00:49:09.987Z",
+    "recordId": "trip_eec9c336-bddb-4899-afe4-a108816d75eb",
+    "accion": "ACTUALIZACION_VIAJE",
+    "descripcion": "Se actualizó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_3bdc5de5-2b8e-4a3b-9df1-f715bcb9942c",
+    "timestamp": "2026-03-13T00:57:02.020Z",
+    "recordId": "trip_eec9c336-bddb-4899-afe4-a108816d75eb",
+    "accion": "ACTUALIZACION_VIAJE",
+    "descripcion": "Se actualizó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_1dde4114-326c-4e57-b57f-0bc653af3864",
+    "timestamp": "2026-03-13T00:57:28.885Z",
+    "recordId": "trip_eec9c336-bddb-4899-afe4-a108816d75eb",
+    "accion": "ACTUALIZACION_VIAJE",
+    "descripcion": "Se actualizó el viaje Crucero del Sur Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_be57dfd2-639f-4c6f-b41c-fe9eb09f4da8",
+    "timestamp": "2026-03-13T00:59:12.371Z",
+    "recordId": "trip_551c380f-3d21-4b7a-b4dd-791f7ac59d09",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Itapua Poty Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_f7bc4f7f-3fd5-4204-bb6b-bb1397210f64",
+    "timestamp": "2026-03-13T11:28:33.805Z",
+    "recordId": "trip_d3f41c8b-b723-4421-9c04-2406b880e139",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Guaireña Cuidad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_7b6c15e6-b5fa-4267-9ad6-819030b53ea7",
+    "timestamp": "2026-03-13T21:09:32.818Z",
+    "recordId": "trip_78bfeecb-7d35-40c7-b89b-0cb4cf54d4cd",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje Crucero del Sur Ciudad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_f0a809cb-fff1-4782-9d66-7920ae29994f",
+    "timestamp": "2026-03-13T21:12:28.748Z",
+    "recordId": "trip_78bfeecb-7d35-40c7-b89b-0cb4cf54d4cd",
+    "accion": "ACTUALIZACION_VIAJE",
+    "descripcion": "Se actualizó el viaje Crucero del Sur Ciudad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_f606229d-97f2-4069-9557-05574d561e7a",
+    "timestamp": "2026-03-13T21:18:23.166Z",
+    "recordId": "trip_e4faa661-b48d-44cc-8cc7-042e2726899f",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje San Juan SRL Ciudad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_4a0d78a2-148c-4b2f-aeb6-8a577343f42d",
+    "timestamp": "2026-03-13T21:27:49.751Z",
+    "recordId": "trip_e4faa661-b48d-44cc-8cc7-042e2726899f",
+    "accion": "ACTUALIZACION_VIAJE",
+    "descripcion": "Se actualizó el viaje San Juan SRL Ciudad del Este → Asuncion",
+    "usuario": "admin"
+  }
+]

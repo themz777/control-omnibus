@@ -1,0 +1,29 @@
+{
+  "name": "sistema-monitoreo-terminal-cde",
+  "version": "1.1.0",
+  "description": "Sistema inteligente de monitoreo y notificación de salidas en tiempo real para terminales de transporte",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "terminal",
+    "transporte",
+    "socket.io",
+    "express",
+    "whatsapp",
+    "tesis"
+  ],
+  "author": "Jose Carlos Mendez Benitez",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "socket.io": "^4.8.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
