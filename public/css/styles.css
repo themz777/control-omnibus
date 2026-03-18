@@ -1258,6 +1258,65 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   .kpi-card strong {
     font-size: 28px;
   }
+
+  /* Mega Menu Mobile Stacking */
+  .mega-tabs-container {
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+  }
+
+  .mega-tabs-nav {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .mega-tab-btn {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .mega-tab-btn.active {
+    border-left: none;
+    border-bottom: 3px solid #15803d;
+    background: #ecfdf5;
+  }
+
+  .mega-tabs-content {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .mega-footer-promo {
+    position: relative;
+    width: 100%;
+    bottom: auto;
+    left: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+
+  .mega-search-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .mega-search-inputs .search-input-group:nth-child(3) {
+    grid-column: span 1;
+  }
+
+  .institutional-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .mega-search-col {
   grid-column: span 2;
