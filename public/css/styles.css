@@ -1448,21 +1448,35 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     font-size: 28px;
   }
 
-  /* Mega Menu Mobile Stacking */
-  .mega-tabs-container {
-    flex-direction: column;
-    min-height: auto;
+  /* Definitive Mega Menu Mobile Reset v2.2 */
+  .mega-tabs-container, 
+  .mega-tabs-content, 
+  .mega-tab-panel,
+  .simple-container,
+  .full-width-content {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 15px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    overflow: visible !important;
   }
 
   .mega-tabs-nav {
+    display: flex !important;
     width: 100% !important;
     flex-direction: row !important;
     overflow-x: auto !important;
-    background: #f8fafc !important;
+    position: static !important;
+    background: #f1f5f9 !important;
     padding: 10px !important;
-    gap: 12px !important;
     border-bottom: 2px solid #e2e8f0 !important;
-    position: static !important; /* CLEAR STICKY */
+    gap: 10px !important;
     height: auto !important;
   }
 
