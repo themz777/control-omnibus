@@ -231,6 +231,7 @@ document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
   const navLinks = document.querySelector('.nav-links');
   if (navLinks) {
     navLinks.classList.toggle('mobile-active');
+    document.body.classList.toggle('menu-open', navLinks.classList.contains('mobile-active'));
     document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : '';
   }
 });
@@ -239,6 +240,7 @@ document.getElementById('closeMenuBtn')?.addEventListener('click', () => {
   const navLinks = document.querySelector('.nav-links');
   if (navLinks) {
     navLinks.classList.remove('mobile-active');
+    document.body.classList.remove('menu-open');
     document.body.style.overflow = '';
   }
 });
@@ -248,13 +250,21 @@ document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', (e) => {
     if (window.innerWidth <= 992) {
       e.preventDefault();
+      e.stopPropagation();
       const parent = link.parentElement;
       if (parent) {
-        // Close others
+        console.log('Mobile toggle:', link.textContent);
+        const wasOpen = parent.classList.contains('mobile-open');
+        
+        // Close all first
         document.querySelectorAll('.nav-item').forEach(item => {
-          if (item !== parent) item.classList.remove('mobile-open');
+          item.classList.remove('mobile-open');
         });
-        parent.classList.toggle('mobile-open');
+        
+        // Toggle this one
+        if (!wasOpen) {
+          parent.classList.add('mobile-open');
+        }
       }
     }
   });
