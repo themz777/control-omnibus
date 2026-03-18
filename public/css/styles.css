@@ -1368,6 +1368,16 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     display: block !important;
   }
   
+  .nav-link {
+    display: block !important;
+    padding: 20px 25px !important;
+    width: 100% !important;
+    color: #1e293b !important; /* DARK TEXT ON WHITE BG */
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+  }
+  
   .nav-item.mobile-open .nav-link {
     background: #ecfdf5 !important;
     color: #15803d !important;
