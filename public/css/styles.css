@@ -1241,6 +1241,7 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     visibility: visible;
     pointer-events: auto;
   }
+  .mobile-menu-btn { display: flex; }
 }
 
 /* Mobile Header Refinement */
