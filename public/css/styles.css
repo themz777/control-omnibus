@@ -1193,6 +1193,114 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   transition: 0.3s;
 }
 
+/* --- Mega Search & Companies (Desktop Base) --- */
+.mega-search-col {
+  grid-column: span 2;
+  border-right: 1px solid #f1f5f9;
+  padding-right: 40px;
+}
+.mega-search-form {
+  background: #f8fafc;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+.mega-search-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 15px;
+}
+.mega-search-inputs .search-input-group:nth-child(3) {
+  grid-column: span 2;
+}
+.mega-search-inputs .search-input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-family: 'Inter';
+  font-size: 0.9rem;
+  background: #ffffff;
+}
+
+.mega-search-form .search-options {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.mega-search-form .search-submit {
+  grid-column: span 2;
+  width: 100%;
+}
+
+.mega-company-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  max-height: 430px;
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+.mega-company-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mega-company-list::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 3px;
+}
+
+.mega-company-item {
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+
+/* Institutional History & Objectives */
+.inst-section h5 {
+  color: #1a5e35;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  font-family: 'Outfit';
+}
+.inst-section p {
+  color: #475569;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  text-align: justify;
+}
+
+/* Simplified Mega Menu for Institutional (Desktop) */
+.institutional-dropdown {
+  width: 800px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+}
+
+.nav-item:hover .institutional-dropdown {
+  transform: translateX(-50%) translateY(0);
+}
+
+.simple-container {
+  min-height: auto !important;
+  padding: 20px;
+}
+
+.full-width-content {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.institutional-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
 @media (max-width: 992px) {
   .nav-container { padding: 0 !important; }
   .nav-links { display: none; }
@@ -1354,154 +1462,17 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   }
 
   /* Specific fix for Institutional standalone item */
+  .institutional-dropdown {
+    width: 100vw !important;
+    left: 0 !important;
+    transform: none !important;
+    position: static !important;
+  }
   .institutional-dropdown .mega-tabs-content {
     padding: 20px;
   }
-  
   .institutional-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-
-  .mega-footer-promo {
-    position: relative;
-    width: 100%;
-    bottom: auto;
-    left: auto;
-    margin-top: 20px;
-    border-radius: 8px;
-  }
-
-  .mega-search-inputs {
-    grid-template-columns: 1fr;
-  }
-
-  .mega-search-inputs .search-input-group:nth-child(3) {
-    grid-column: span 1;
-  }
-
-  .institutional-grid {
-    grid-template-columns: 1fr;
-  }
-}
-.mega-search-col {
-  grid-column: span 2;
-  border-right: 1px solid #f1f5f9;
-  padding-right: 40px;
-}
-
-.mega-search-form {
-  background: #f8fafc;
-  padding: 25px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-}
-
-.mega-search-inputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.mega-search-inputs .search-input-group:nth-child(3) {
-  grid-column: span 2;
-}
-
-.mega-search-inputs .search-input-group input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-family: 'Inter';
-  font-size: 0.9rem;
-  background: #ffffff;
-}
-
-.mega-search-form .search-options {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 20px;
-  justify-content: flex-start;
-}
-
-.mega-search-form .search-submit {
-  grid-column: span 2;
-  width: 100%;
-}
-
-.mega-company-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  max-height: 430px;
-  overflow-y: auto;
-  padding-right: 15px;
-}
-
-.mega-company-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.mega-company-list::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
-  border-radius: 3px;
-}
-
-.mega-company-item {
-  border-bottom: 1px solid #f1f5f9;
-  padding-bottom: 10px;
-}
-
-/* Institutional History & Objectives */
-.inst-section h5 {
-  color: #1a5e35;
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-  font-family: 'Outfit';
-}
-.inst-section p {
-  color: #475569;
-  line-height: 1.6;
-  font-size: 0.95rem;
-  text-align: justify;
-}
-
-/* Simplified Mega Menu for Institutional */
-.institutional-dropdown {
-  width: 800px;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-}
-
-.nav-item:hover .institutional-dropdown {
-  transform: translateX(-50%) translateY(0);
-}
-
-.simple-container {
-  min-height: auto !important;
-  padding: 20px;
-}
-
-.full-width-content {
-  width: 100% !important;
-  padding: 0 !important;
-}
-
-.institutional-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-  .institutional-dropdown {
-    width: 95%;
-    left: 2.5%;
-    transform: translateY(10px);
-  }
-  .institutional-grid {
-    grid-template-columns: 1fr;
   }
 }
