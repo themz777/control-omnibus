@@ -1455,33 +1455,54 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   }
 
   .mega-tabs-nav {
-    width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
-    background: #f8fafc;
-    padding: 10px;
-    gap: 8px;
-    border-bottom: 1px solid #e2e8f0;
+    width: 100% !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    background: #f8fafc !important;
+    padding: 10px !important;
+    gap: 12px !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    position: static !important; /* CLEAR STICKY */
+    height: auto !important;
   }
 
   .mega-tab-btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    color: #475569;
-    border-radius: 6px;
+    padding: 12px 20px !important;
+    font-size: 0.95rem !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #475569 !important;
+    border-radius: 8px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
   .mega-tab-btn.active {
-    background: #15803d;
-    color: #ffffff;
-    border-color: #15803d;
+    background: #15803d !important;
+    color: #ffffff !important;
+    border-color: #15803d !important;
+    box-shadow: 0 4px 10px rgba(21, 128, 61, 0.2) !important;
   }
 
   .mega-tabs-content {
     width: 100% !important;
-    padding: 20px !important;
+    padding: 25px 20px !important;
+    background: #ffffff !important;
+    min-height: auto !important;
+    height: auto !important;
+    position: static !important;
+  }
+  
+  .mega-tab-panel {
+    display: none !important;
+    position: static !important;
+    height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .mega-tab-panel.active {
+    display: block !important;
   }
 
   /* Specific fix for Institutional standalone item */
