@@ -1473,6 +1473,44 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     overflow: visible !important;
   }
 
+  .institutional-grid {
+    display: block !important;
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .inst-section {
+    display: block !important;
+    margin-bottom: 30px !important;
+    padding: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .inst-section h5 {
+    display: block !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 15px !important;
+    color: #15803d !important; /* DARK GREEN */
+    font-weight: 700 !important;
+  }
+  
+  .inst-section p {
+    display: block !important;
+    color: #334155 !important; /* DARK SLATE */
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+  }
+
+  .institutional-dropdown {
+    position: static !important;
+    width: 100% !important;
+    background: #f8fafc !important;
+    transform: none !important;
+  }
+
   .mega-tabs-nav {
     display: flex !important;
     width: 100% !important;

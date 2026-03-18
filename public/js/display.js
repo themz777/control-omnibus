@@ -253,17 +253,26 @@ document.querySelectorAll('.nav-link').forEach(link => {
       e.stopPropagation();
       const parent = link.parentElement;
       if (parent) {
-        console.log('Mobile toggle:', link.textContent);
         const wasOpen = parent.classList.contains('mobile-open');
         
-        // Close all first
+        // Reset ALL links and items
         document.querySelectorAll('.nav-item').forEach(item => {
           item.classList.remove('mobile-open');
+          item.querySelector('.nav-link')?.classList.remove('active');
         });
         
         // Toggle this one
         if (!wasOpen) {
           parent.classList.add('mobile-open');
+          link.classList.add('active');
+          
+          // Force active on first panel if it's Institutional (no internal nav)
+          if (parent.classList.contains('has-mega')) {
+            const panels = parent.querySelectorAll('.mega-tab-panel');
+            if (panels.length > 0 && !parent.querySelector('.mega-tabs-nav')) {
+                panels[0].classList.add('active');
+            }
+          }
         }
       }
     }
