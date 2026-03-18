@@ -1204,10 +1204,43 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     left: 0;
     width: 100%;
     background: var(--nav-bg);
-    padding: 20px;
+    padding: 0; /* Remove padding to allow items to be full width */
     z-index: 1000;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
   }
-  .mobile-menu-btn { display: flex; }
+  .nav-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-item:last-child {
+    border-bottom: none;
+  }
+  .nav-link {
+    display: block;
+    padding: 15px 25px !important;
+    width: 100%;
+  }
+  .nav-link::after {
+    display: none !important; /* Remove underline on mobile nav links */
+  }
+  .nav-item.has-mega:hover .mega-menu {
+    position: relative; /* Stick it below the link on mobile */
+    top: 0;
+    left: 0;
+    transform: none !important;
+    box-shadow: none;
+    background: #f8fafc; /* Change bg for clarity inside mobile menu */
+    display: none; /* Hide by default on mobile, show on active class or just force display if hover is enough */
+  }
+  
+  /* On mobile, we might want to click to open instead of hover, 
+     but since this is a simple presentation, I'll allow hover to work or make them always visible if small */
+  .nav-item.mobile-open .mega-menu {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
 
 /* Mobile Header Refinement */

@@ -230,11 +230,23 @@ document.querySelector('.mega-menu')?.addEventListener('click', (e) => {
 document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
   const navLinks = document.querySelector('.nav-links');
   if (navLinks) {
-    const isVisible = navLinks.classList.contains('mobile-active');
-    if (isVisible) {
-      navLinks.classList.remove('mobile-active');
-    } else {
-      navLinks.classList.add('mobile-active');
-    }
+    navLinks.classList.toggle('mobile-active');
   }
+});
+
+// Toggle sub-menus on mobile clicking the link
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    if (window.innerWidth <= 992) {
+      e.preventDefault();
+      const parent = link.parentElement;
+      if (parent) {
+        // Close others
+        document.querySelectorAll('.nav-item').forEach(item => {
+          if (item !== parent) item.classList.remove('mobile-open');
+        });
+        parent.classList.toggle('mobile-open');
+      }
+    }
+  });
 });
