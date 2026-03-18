@@ -1197,16 +1197,17 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   .nav-container { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-links.mobile-active {
-    display: flex;
-    flex-direction: column;
+    display: block; /* Use block for natural flow */
     position: absolute;
     top: var(--nav-height);
     left: 0;
     width: 100%;
-    background: var(--nav-bg);
-    padding: 0; /* Remove padding to allow items to be full width */
-    z-index: 1000;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    background: #15803d; /* Specific high-contrast green */
+    padding: 0;
+    z-index: 2000;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-height: 85vh;
+    overflow-y: auto;
   }
   .nav-item {
     width: 100%;
@@ -1221,16 +1222,27 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     width: 100%;
   }
   .nav-link::after {
-    display: none !important; /* Remove underline on mobile nav links */
+    display: none !important;
   }
-  .nav-item.has-mega:hover .mega-menu {
-    position: relative; /* Stick it below the link on mobile */
-    top: 0;
-    left: 0;
+  .nav-item.has-mega .mega-menu {
+    position: static; /* Force static for accordion flow */
+    width: 100%;
+    display: none;
+    opacity: 1;
+    visibility: visible;
     transform: none !important;
-    box-shadow: none;
-    background: #f8fafc; /* Change bg for clarity inside mobile menu */
-    display: none; /* Hide by default on mobile, show on active class or just force display if hover is enough */
+    background: #ffffff;
+    padding: 0;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+  }
+  
+  .nav-item.mobile-open .mega-menu {
+    display: block;
+  }
+  
+  .nav-item.mobile-open .nav-link {
+    background: rgba(255,255,255,0.1);
+    font-weight: 700;
   }
   
   /* On mobile, we might want to click to open instead of hover, 
@@ -1296,39 +1308,41 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   /* Mega Menu Mobile Stacking */
   .mega-tabs-container {
     flex-direction: column;
-    height: auto;
     min-height: auto;
   }
 
   .mega-tabs-nav {
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #e2e8f0;
     flex-direction: row;
     overflow-x: auto;
+    background: #f1f5f9;
     padding: 10px;
-    gap: 10px;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   .mega-tab-btn {
-    padding: 10px 15px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    border-left: none;
-    border-bottom: 3px solid transparent;
-    border-radius: 6px;
-    flex-shrink: 0;
-  }
-
-  .mega-tab-btn.active {
-    border-left: none;
-    border-bottom: 3px solid #15803d;
-    background: #ecfdf5;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
   }
 
   .mega-tabs-content {
     width: 100%;
+    padding: 15px;
+  }
+
+  /* Specific fix for Institutional standalone item */
+  .institutional-dropdown .mega-tabs-content {
     padding: 20px;
+  }
+  
+  .institutional-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .mega-footer-promo {
