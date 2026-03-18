@@ -97,5 +97,27 @@
     "nombrePasajero": "Alex Gay",
     "estado": "SIMULADO",
     "mensaje": "Hola Alex Gay, le informamos que su viaje con San Juan SRL desde Ciudad del Este hacia Asuncion, programado para el 2026-03-13 a las 18:28, ha sido cancelado."
+  },
+  {
+    "id": "notif_d2bffc36-fc47-40d6-a6a2-7e9e9b4b1196",
+    "timestamp": "2026-03-16T20:57:01.863Z",
+    "recordId": "trip_c3e7a7df-719e-403b-8df3-18592ff48320",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "12345678910",
+    "nombrePasajero": "Holaaa",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Holaaa, le recordamos su viaje con NSA desde Ciudad del Este hacia Asuncion el 2026-03-16 a las 18:00. Andén: Por confirmar."
+  },
+  {
+    "id": "notif_9ab51015-6aba-4b59-b739-60c00305a10f",
+    "timestamp": "2026-03-16T21:04:34.721Z",
+    "recordId": "trip_abd897fd-2569-484f-9f1e-09c6bdb3b1e0",
+    "tipo": "WHATSAPP",
+    "motivo": "RECORDATORIO",
+    "destinatario": "12345678910",
+    "nombrePasajero": "Holaaa",
+    "estado": "SIMULADO",
+    "mensaje": "Hola Holaaa, le recordamos su viaje con NSA desde Ciudad del Este hacia Asuncion el 2026-03-16 a las 18:15. Andén: Por confirmar."
   }
 ]

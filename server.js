@@ -33,6 +33,7 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/Pdf', express.static(path.join(__dirname, 'Pdf')));
 
 
 initSocket(io);

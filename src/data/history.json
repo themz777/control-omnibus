@@ -174,5 +174,21 @@
     "accion": "ACTUALIZACION_VIAJE",
     "descripcion": "Se actualizó el viaje San Juan SRL Ciudad del Este → Asuncion",
     "usuario": "admin"
+  },
+  {
+    "id": "hist_721063d1-fbc4-487a-a1d3-15c8f2f47834",
+    "timestamp": "2026-03-16T20:56:46.838Z",
+    "recordId": "trip_c3e7a7df-719e-403b-8df3-18592ff48320",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje NSA Ciudad del Este → Asuncion",
+    "usuario": "admin"
+  },
+  {
+    "id": "hist_2e457d9d-75c6-49dd-969f-9b5cbfcf3622",
+    "timestamp": "2026-03-16T21:04:09.799Z",
+    "recordId": "trip_abd897fd-2569-484f-9f1e-09c6bdb3b1e0",
+    "accion": "CREACION_VIAJE",
+    "descripcion": "Se creó el viaje NSA Ciudad del Este → Asuncion",
+    "usuario": "admin"
   }
 ]

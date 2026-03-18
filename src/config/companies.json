@@ -1,9 +1,51 @@
 [
-  { "name": "Guaireña", "active": true, "logo": "guairena.png.jpeg" },
-  { "name": "Itapua Poty", "active": true, "logo": "itapua_poty.png.jpeg" },
-  { "name": "Crucero del Sur", "active": true, "logo": "crucero_del_sur.png.jpeg" },
-  { "name": "Nuestra Señora de la Encarnación", "active": true, "logo": "encarnacion.png.jpeg" },
-  { "name": "San Juan SRL", "active": true, "logo": "san_juan.png.jpeg" },
-  { "name": "Cometa del Amambay", "active": true, "logo": "cometa_amambay.png.jpeg" }
+  { 
+    "name": "NSA", 
+    "active": true, 
+    "logo": "nsa_logo_v2.png",
+    "links": ["https://www.nsa.com.py/", "https://www.nsa.com.py/destinos", "https://www.plataforma10.com.py/viajes/empresas-de-omnibus/nuestra-senora-de-la-asuncion/"]
+  },
+  { 
+    "name": "Guaireña", 
+    "active": true, 
+    "logo": "guairena.png.jpeg",
+    "links": ["https://empresaguairena.com.py/", "https://empresaguairena.com.py/destinos/", "https://empresaguairena.com.py/agencias/"]
+  },
+  { 
+    "name": "El Tigre", 
+    "active": true, 
+    "logo": "",
+    "links": ["https://www.plataforma10.com.py/viajes/empresas-de-omnibus/el-tigre/", "https://www.facebook.com/eltigrepy/"]
+  },
+  { 
+    "name": "Crucero del Sur", 
+    "active": true, 
+    "logo": "crucero_del_sur.png.jpeg",
+    "links": ["https://www.plataforma10.com.py/viajes/empresas-de-omnibus/crucero-del-sur-de-turismo-parque/", "https://www.facebook.com/CruceroDelSurSrl/"]
+  },
+  { 
+    "name": "Rio Internacional", 
+    "active": true, 
+    "logo": "",
+    "links": ["https://www.plataforma10.com.py/viajes/empresas-de-omnibus/rio-internacional/"]
+  },
+  { 
+    "name": "Cometa del Amambay", 
+    "active": true, 
+    "logo": "cometa_amambay.png.jpeg",
+    "links": ["https://www.instagram.com/c.amambay_py/"]
+  },
+  { 
+    "name": "Itapua Poty", 
+    "active": true, 
+    "logo": "itapua_poty.png.jpeg",
+    "links": []
+  },
+  { 
+    "name": "San Juan SRL", 
+    "active": true, 
+    "logo": "san_juan.png.jpeg",
+    "links": []
+  }
 ]
 
