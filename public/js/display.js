@@ -231,6 +231,15 @@ document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
   const navLinks = document.querySelector('.nav-links');
   if (navLinks) {
     navLinks.classList.toggle('mobile-active');
+    document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : '';
+  }
+});
+
+document.getElementById('closeMenuBtn')?.addEventListener('click', () => {
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks) {
+    navLinks.classList.remove('mobile-active');
+    document.body.style.overflow = '';
   }
 });
 
