@@ -1194,7 +1194,7 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
 }
 
 @media (max-width: 992px) {
-  .nav-container { padding: 0 20px; }
+  .nav-container { padding: 0 !important; }
   .nav-links { display: none; }
   .nav-links.mobile-active {
     display: block !important;
@@ -1218,8 +1218,11 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   }
   .nav-link {
     display: block;
-    padding: 15px 25px !important;
+    padding: 18px 25px !important;
     width: 100%;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600;
   }
   .nav-link::after {
     display: none !important;
@@ -1251,11 +1254,15 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
      but since this is a simple presentation, I'll allow hover to work or make them always visible if small */
   .nav-item.mobile-open .mega-menu {
     display: block !important;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
-  .mobile-menu-btn { display: flex; }
+  .mobile-menu-btn { 
+    display: flex !important; 
+    margin-right: 20px;
+    margin-left: auto;
+  }
 }
 
 /* Mobile Header Refinement */
