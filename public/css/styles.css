@@ -1352,39 +1352,18 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   .nav-item {
     display: block !important;
     width: 100%;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .mobile-nav-header { display: flex; }
-  .nav-item:last-child {
-    border-bottom: none;
-  }
-  .nav-link {
-    display: block;
-    padding: 20px 25px !important;
-    width: 100%;
-    color: #1e293b !important; /* Dark text on white BG */
-    text-decoration: none !important;
-    font-weight: 700;
-    font-size: 1.2rem !important;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .nav-link::after {
-    display: none !important;
+    border-bottom: 2px solid #f1f5f9;
+    position: relative !important;
+    height: auto !important;
   }
   .nav-item.has-mega .mega-menu {
-    position: static !important;
+    position: relative !important;
     width: 100% !important;
     display: none;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    background: #ffffff !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
+    background: #f8fafc !important; /* Slightly different BG for separation */
+    padding: 10px 0 !important;
+    border-top: 1px solid #e2e8f0 !important;
   }
-  
   .nav-item.mobile-open .mega-menu {
     display: block !important;
   }
