@@ -6,8 +6,12 @@ function applyAutoCleanup(records, autoHideSalioMin, autoHideCanceladoMin) {
   let changed = false;
   
   const cleaned = records.map((record) => {
-    // 1) Auto-Transitions to next state based on time (if not yet departed or cancelled via admin)
-    if (record.estado !== ESTADOS.SALIO && record.estado !== ESTADOS.CANCELADO) {
+    // 1) Auto-Transitions — respetar decisiones manuales del administrador
+    const puedeAutoTransicionar = !record.estadoForzadoManual &&
+      record.estado !== ESTADOS.SALIO &&
+      record.estado !== ESTADOS.CANCELADO;
+
+    if (puedeAutoTransicionar) {
       const remaining = minutesUntilDateTime(record.fechaViaje, record.horaProgramada);
       if (remaining !== null) {
         let targetStatus = record.estado;
@@ -17,12 +21,12 @@ function applyAutoCleanup(records, autoHideSalioMin, autoHideCanceladoMin) {
         } else if (remaining <= 0 && remaining > -5) {
           targetStatus = ESTADOS.EN_HORA;
         } else if (remaining <= -5) {
-          targetStatus = ESTADOS.SALIO; // After 5 mins, mark as departed
+          targetStatus = ESTADOS.SALIO;
         }
 
         if (record.estado !== targetStatus) {
           record.estado = targetStatus;
-          record.updatedAt = now; // Reset update timer when transitioning to SALIO
+          record.updatedAt = now;
           changed = true;
         }
       }

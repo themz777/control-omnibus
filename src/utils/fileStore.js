@@ -16,8 +16,13 @@ function ensureFileExists(filePath, defaultValue = []) {
 
 function readJson(filePath, defaultValue = []) {
   ensureFileExists(filePath, defaultValue);
-  const content = fs.readFileSync(path.resolve(filePath), 'utf-8');
-  return JSON.parse(content || JSON.stringify(defaultValue));
+  try {
+    const content = fs.readFileSync(path.resolve(filePath), 'utf-8');
+    return JSON.parse(content || JSON.stringify(defaultValue));
+  } catch (err) {
+    console.error(`[fileStore] JSON corrupto en ${filePath}, restaurando valor por defecto:`, err.message);
+    return defaultValue;
+  }
 }
 
 function writeJson(filePath, data) {

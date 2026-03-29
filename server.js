@@ -21,6 +21,12 @@ const io = new Server(server);
 
 app.set('io', io);
 
+// Advertencia de seguridad si se usan credenciales por defecto
+if (!process.env.ADMIN_PASSWORD || !process.env.SESSION_TOKEN) {
+  console.warn('\x1b[33m[ADVERTENCIA] Las variables ADMIN_PASSWORD y/o SESSION_TOKEN no están definidas en .env.\x1b[0m');
+  console.warn('\x1b[33m[ADVERTENCIA] El sistema usará credenciales inseguras por defecto. NO usar en producción.\x1b[0m');
+}
+
 ensureDataFiles();
 
 app.use(express.json());

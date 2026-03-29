@@ -126,6 +126,12 @@ function createRecord(data) {
   return record;
 }
 
+const CAMPOS_ACTUALIZABLES = [
+  'empresa', 'origen', 'destino', 'fechaViaje', 'horaProgramada',
+  'horaReal', 'anden', 'estado', 'observacion', 'minutosAtrasoManual',
+  'nombrePasajero', 'telefonoUsuario'
+];
+
 function updateRecord(id, data) {
   const records = getAllRecords();
   const index = records.findIndex((record) => record.id === id);
@@ -136,13 +142,28 @@ function updateRecord(id, data) {
   }
 
   const current = records[index];
-  const merged = { ...current, ...data };
+
+  // Solo permitir campos explícitamente habilitados (whitelist)
+  const safeData = {};
+  CAMPOS_ACTUALIZABLES.forEach((field) => {
+    if (Object.prototype.hasOwnProperty.call(data, field)) {
+      safeData[field] = data[field];
+    }
+  });
+
+  // Si el admin cambió el estado manualmente, marcarlo para que el scheduler lo respete
+  if (safeData.estado && safeData.estado !== current.estado) {
+    safeData.estadoForzadoManual = true;
+  }
+
+  const merged = { ...current, ...safeData };
   assertValidPayload(merged);
   const normalized = normalizeRecordPayload(merged, current);
 
   const updated = {
     ...current,
     ...normalized,
+    estadoForzadoManual: safeData.estadoForzadoManual ?? current.estadoForzadoManual ?? false,
     updatedAt: nowIso()
   };
 
