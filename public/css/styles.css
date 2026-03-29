@@ -1440,7 +1440,7 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
 
   /* Flecha indicadora */
   .nav-link::after {
-    content: 'â€º';
+    content: '\203A'; /* CSS escape para ›, sin problemas de codificacion */
     font-size: 1.4rem;
     color: #94a3b8;
     transition: transform 0.2s;
@@ -1484,38 +1484,54 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     margin: 0 !important;
   }
 
+  /* ---- Tabs internos: barra horizontal con scroll ---- */
   .mega-tabs-nav {
     display: flex !important;
     flex-direction: row !important;
     overflow-x: auto !important;
-    gap: 8px !important;
-    padding: 12px 16px !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 10px !important;
+    padding: 14px 16px !important;
     background: #f1f5f9 !important;
     border-bottom: 1px solid #cbd5e1 !important;
     position: static !important;
-    width: auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
     height: auto !important;
     min-height: 0 !important;
+    /* Mostrar scrollbar visible para indicar que se puede deslizar */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+
+  .mega-tabs-nav::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .mega-tabs-nav::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
   }
 
   .mega-tab-btn {
     flex-shrink: 0 !important;
-    padding: 8px 14px !important;
-    font-size: 0.85rem !important;
+    padding: 10px 18px !important;  /* mas espacio */
+    font-size: 0.9rem !important;   /* ligeramente mas grande */
     background: #ffffff !important;
     border: 1px solid #cbd5e1 !important;
     color: #475569 !important;
-    border-radius: 6px !important;
+    border-radius: 8px !important;
     white-space: nowrap !important;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    font-weight: 600;
   }
 
   .mega-tab-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
     fill: currentColor;
   }
 
@@ -1523,6 +1539,7 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
     background: #15803d !important;
     color: #ffffff !important;
     border-color: #15803d !important;
+    box-shadow: 0 2px 8px rgba(21,128,61,0.25) !important;
   }
 
   /* ---- Contenido de los tabs ---- */
