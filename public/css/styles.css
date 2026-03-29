@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap');
 
 * { box-sizing: border-box; }
 :root {
@@ -918,6 +918,11 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   height: 100%;
 }
 
+/* ===========================================
+   DESKTOP NAV — Solo para pantallas >= 993px
+   =========================================== */
+@media (min-width: 993px) {
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -1300,6 +1305,8 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
   gap: 30px;
   margin-top: 20px;
 }
+
+} /* end @media (min-width: 993px) */
 
 /* ============================================
    MOBILE MENU â€” Estilos limpios y definitivos
