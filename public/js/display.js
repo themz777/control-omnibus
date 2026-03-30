@@ -278,31 +278,34 @@ document.querySelectorAll('.mega-tab-btn').forEach(btn => {
     });
   });
 
-  // Search in mobile drawer (reuses pdfSchedules from main display.js scope)
+  // Search in mobile drawer — same logic as desktop handleSearch()
   document.getElementById('mobBtnSearch')?.addEventListener('click', () => {
-    const origin  = (document.getElementById('mobOrigin')?.value  || '').trim().toLowerCase();
     const dest    = (document.getElementById('mobDestination')?.value || '').trim().toLowerCase();
-    const date    = (document.getElementById('mobDate')?.value || '').trim();
     const results = document.getElementById('mobSearchResults');
     if (!results) return;
 
-    const filtered = (typeof pdfSchedules !== 'undefined' ? pdfSchedules : []).filter(s => {
-      const matchOrig = !origin || (s.origen || '').toLowerCase().includes(origin);
-      const matchDest = !dest   || (s.destino || '').toLowerCase().includes(dest);
-      const matchDate = !date   || (s.fecha || '') === date;
-      return matchOrig && matchDest && matchDate;
-    });
+    if (!dest) {
+      results.classList.add('hidden');
+      return;
+    }
+
+    const filtered = pdfSchedules.filter(item =>
+      (item.destino || '').toLowerCase().includes(dest) ||
+      (item.empresa || '').toLowerCase().includes(dest)
+    );
 
     results.classList.remove('hidden');
     if (!filtered.length) {
-      results.innerHTML = '<p style="color:#64748b;font-size:0.9rem;">Sin resultados para esa bÃºsqueda.</p>';
+      results.innerHTML = '<p style="color:#64748b;font-size:0.9rem;text-align:center;padding:10px 0">No se encontraron horarios para ese destino.</p>';
       return;
     }
-    results.innerHTML = filtered.slice(0, 10).map(s => `
-      <div style="padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;font-size:0.88rem;">
-        <strong>${escapeHtml(s.empresa || '-')}</strong><br>
-        ${escapeHtml(s.origen || '-')} &rarr; ${escapeHtml(s.destino || '-')}<br>
-        <span style="color:#64748b">${escapeHtml(s.horaProgramada || '-')}</span>
+    results.innerHTML = filtered.slice(0, 12).map(item => `
+      <div style="padding:12px;background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #15803d;border-radius:8px;margin-bottom:8px;">
+        <strong style="font-size:0.9rem;color:#1e293b">${escapeHtml(item.empresa || '-')}</strong>
+        <div style="font-size:0.82rem;color:#64748b;margin:4px 0">${escapeHtml(item.destino || '-')}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px">
+          ${(item.horarios || []).map(h => `<span style="background:#15803d;color:#fff;padding:2px 8px;border-radius:20px;font-size:0.78rem">${h}</span>`).join('')}
+        </div>
       </div>
     `).join('');
   });
