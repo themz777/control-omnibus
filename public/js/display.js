@@ -1,4 +1,4 @@
-﻿const socket = io();
+const socket = io();
 const displayTableBody = document.getElementById('displayTableBody');
 const alertBanner = document.getElementById('alertBanner');
 const infoBtn = document.getElementById('infoBtn');
@@ -263,13 +263,16 @@ document.querySelectorAll('.mega-tab-btn').forEach(btn => {
   });
 
   // Sub-tabs: Buscar / Info / Empresas
+  // IMPORTANT: scope to #mob-section-menu only, never touch institucional panels
+  const menuSection = document.getElementById('mob-section-menu');
   document.querySelectorAll('.mob-sub-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.mob-sub-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       const panelId = btn.dataset.panel;
-      document.querySelectorAll('.mob-panel').forEach(p => p.classList.remove('active'));
+      // Only remove active from panels inside the menu section
+      menuSection?.querySelectorAll('.mob-panel').forEach(p => p.classList.remove('active'));
       const panel = document.getElementById(panelId);
       if (panel) panel.classList.add('active');
     });
