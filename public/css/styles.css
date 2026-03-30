@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap');
 
 * { box-sizing: border-box; }
 :root {
@@ -1307,3 +1307,111 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
 }
 
 } /* end @media (min-width: 993px) */
+
+/* =============================================
+   EMPRESAS SECTION — Logo card grid
+   ============================================= */
+
+.empresas-section {
+  margin: 30px 0 20px;
+}
+
+.empresas-header {
+  background: #15803d;
+  border-radius: 12px;
+  padding: 14px 30px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.empresas-header h2 {
+  color: #ffffff;
+  font-family: 'Outfit';
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.empresas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 992px) {
+  .empresas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .empresas-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+
+.empresa-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.empresa-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.empresa-card-logo {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  padding: 12px;
+}
+
+.empresa-card-logo img {
+  max-width: 100%;
+  max-height: 86px;
+  object-fit: contain;
+}
+
+.empresa-card-initials {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #94a3b8;
+}
+
+.empresa-card-name {
+  background: #15803d;
+  color: #ffffff;
+  text-align: center;
+  padding: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-family: 'Outfit';
+}
+
+.empresa-card-links {
+  padding: 8px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-top: 1px solid #f1f5f9;
+  background: #ffffff;
+}
+
+.empresa-card-link {
+  font-size: 0.75rem;
+  color: #0f6fd8;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #eff6ff;
+}
+
+.empresa-card-link:hover {
+  background: #dbeafe;
+}

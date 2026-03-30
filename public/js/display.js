@@ -17,32 +17,35 @@ function getCompanyLogo(name) {
 }
 
 function renderModalCompanyLinks() {
-  const html = companiesCache.map((company) => {
-    if (!company.links || !company.links.length) return '';
+  const cardHtml = companiesCache.map((company) => {
     const nameOnly = company.name.split('(')[0].trim();
+    const logoSrc = company.logo ? `/assets/logos/${company.logo}` : null;
+    const links = (company.links || []).map((link) => {
+      let label = 'Web';
+      if (link.includes('facebook'))    label = 'Facebook';
+      if (link.includes('instagram'))   label = 'Instagram';
+      if (link.includes('plataforma10')) label = 'Plataforma 10';
+      if (link.includes('destinos'))    label = 'Destinos';
+      if (link.includes('agencias'))    label = 'Agencias';
+      return `<a href="${link}" class="empresa-card-link" target="_blank">${label}</a>`;
+    }).join('');
+
     return `
-      <div class="sidebar-company-item">
-        <div class="sidebar-company-head">
-          ${company.logo ? `<img src="/assets/logos/${company.logo}" class="company-logo" style="width:18px; height:18px;">` : ''}
-          <span>${escapeHtml(nameOnly)}</span>
+      <div class="empresa-card">
+        <div class="empresa-card-logo">
+          ${logoSrc
+            ? `<img src="${logoSrc}" alt="${escapeHtml(nameOnly)}">`
+            : `<span class="empresa-card-initials">${escapeHtml(nameOnly.substring(0,2))}</span>`
+          }
         </div>
-        <div class="sidebar-company-links">
-          ${company.links.map((link) => {
-            let label = 'Sitio Web';
-            if (link.includes('facebook')) label = 'Facebook';
-            if (link.includes('instagram')) label = 'Instagram';
-            if (link.includes('plataforma10')) label = 'Plataforma 10';
-            if (link.includes('destinos')) label = 'Destinos';
-            if (link.includes('agencias')) label = 'Agencias';
-            return `<a href="${link}" class="btn-link" target="_blank">${label}</a>`;
-          }).join('')}
-        </div>
+        <div class="empresa-card-name">${escapeHtml(nameOnly.toUpperCase())}</div>
+        ${links ? `<div class="empresa-card-links">${links}</div>` : ''}
       </div>
     `;
   }).join('');
 
-  if (modalCompanyLinks) modalCompanyLinks.innerHTML = html;
-  if (sidebarCompanyLinks) sidebarCompanyLinks.innerHTML = html;
+  if (modalCompanyLinks) modalCompanyLinks.innerHTML = cardHtml;
+  if (sidebarCompanyLinks) sidebarCompanyLinks.innerHTML = cardHtml;
 }
 
 
