@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel Público - Terminal CDE</title>
-  <link rel="stylesheet" href="/css/styles.css?v=3.3" />
+  <link rel="stylesheet" href="/css/styles.css?v=4.0" />
+  <link rel="stylesheet" href="/css/mobile-drawer.css?v=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/png" href="/assets/logos/titulo.png" />
@@ -21,12 +22,16 @@
   </header>
 
   <nav class="mega-menu-nav">
+    <!-- Barra móvil superior (solo visible en móvil) -->
+    <div class="mobile-top-bar">
+      <span class="mobile-top-title">Terminal CDE</span>
+      <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Nav de escritorio -->
     <div class="nav-container">
       <ul class="nav-links">
-        <li class="mobile-nav-header">
-          <span>Menú de Navegación</span>
-          <button id="closeMenuBtn" class="close-menu-btn">&times;</button>
-        </li>
         <li class="nav-item has-mega">
           <a href="#" class="nav-link">Menú</a>
           <div class="mega-menu">
@@ -135,13 +140,6 @@
             </div>
           </div>
         </li>
-      </ul>
-      <div class="nav-extra">
-        <button id="mobileMenuBtn" class="mobile-menu-btn">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
   </nav>
 
   <main class="display-main">
@@ -256,9 +254,99 @@
     </div>
   </div>
 
-  <button id="infoBtn" class="info-float hidden" title="Información y Enlaces">
-    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-  </button>
+  <!-- =====================================================
+       MOBILE DRAWER — Completamente independiente del nav de escritorio
+       ===================================================== -->
+  <div id="mobileDrawer" class="mob-drawer" aria-hidden="true">
+    <!-- Encabezado del drawer -->
+    <div class="mob-drawer-header">
+      <span class="mob-drawer-title">Menú de Navegación</span>
+      <button id="mobCloseBtn" class="mob-close-btn" aria-label="Cerrar">&times;</button>
+    </div>
+
+    <!-- Tabs de sección principal -->
+    <div class="mob-section-tabs">
+      <button class="mob-section-btn active" data-section="menu">Menú</button>
+      <button class="mob-section-btn" data-section="institucional">Institucional</button>
+    </div>
+
+    <!-- SECCIÓN: Menú -->
+    <div class="mob-section" id="mob-section-menu">
+      <!-- Sub-tabs -->
+      <div class="mob-sub-tabs">
+        <button class="mob-sub-btn active" data-panel="mob-buscar">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          Buscar Viaje
+        </button>
+        <button class="mob-sub-btn" data-panel="mob-info">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          Info Útil
+        </button>
+        <button class="mob-sub-btn" data-panel="mob-empresas">
+          <svg viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+          Empresas
+        </button>
+      </div>
+
+      <!-- Panel: Buscar Viaje -->
+      <div class="mob-panel active" id="mob-buscar">
+        <h4>Consulta de Viajes</h4>
+        <div class="mob-search-form">
+          <div class="mob-radio-group">
+            <label><input type="radio" name="mobTripType" value="ida" checked> Ida</label>
+            <label><input type="radio" name="mobTripType" value="ida-vuelta"> Ida y Vuelta</label>
+          </div>
+          <input type="text" id="mobOrigin" class="mob-input" placeholder="Lugar de Partida" value="Terminal CDE">
+          <input type="text" id="mobDestination" class="mob-input" placeholder="Lugar de Destino">
+          <input type="date" id="mobDate" class="mob-input">
+          <button id="mobBtnSearch" class="mob-search-btn">Buscar</button>
+          <div id="mobSearchResults" class="mob-results hidden"></div>
+        </div>
+      </div>
+
+      <!-- Panel: Info Útil -->
+      <div class="mob-panel" id="mob-info">
+        <h4>Información Útil</h4>
+        <ul class="mob-link-list">
+          <li><a href="https://www.google.com/maps/search/Terminal+de+Omnibus+Ciudad+del+Este" target="_blank">📍 Ubicación en Google Maps</a></li>
+          <li><a href="/Pdf/documentos_para_viajar.pdf" target="_blank">📄 Documentos para viajar</a></li>
+          <li><a href="/Pdf/SALIDA DE BUSES.pdf" target="_blank">📅 Horarios PDF oficiales</a></li>
+          <li><a href="https://www.plataforma10.com.py/" target="_blank">🌐 Plataforma 10</a></li>
+        </ul>
+      </div>
+
+      <!-- Panel: Empresas -->
+      <div class="mob-panel" id="mob-empresas">
+        <h4>Directorio de Empresas</h4>
+        <div id="mobCompanyLinks" class="mob-company-grid">
+          <!-- Cargado por JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: Institucional -->
+    <div class="mob-section hidden" id="mob-section-institucional">
+      <div class="mob-panel active">
+        <h4>Nuestra Historia &amp; Compromiso</h4>
+        <div class="mob-inst-block">
+          <h5>Terminal de Ómnibus de Ciudad del Este</h5>
+          <p>Desde el año 1993, la Terminal de Ómnibus de Ciudad del Este ya se encontraba en funcionamiento. La historia ha estado marcada por altibajos, incluyendo una gestión municipal conflictiva, una concesión privada, y una posterior recuperación de su administración.</p>
+        </div>
+        <div class="mob-inst-block">
+          <h5>Objetivos y Enfoque de la Terminal</h5>
+          <p>Desde 2019, la terminal ha operado con un enfoque de servicio público y desarrollo local: transporte seguro y eficiente, ingresos destinados al municipio, modernización de infraestructura y gestión transparente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer del drawer -->
+    <div class="mob-drawer-footer">
+      <a href="/admin.html" class="mob-admin-link">Panel Administrativo →</a>
+    </div>
+  </div>
+  <!-- Overlay para cerrar el drawer al tocar fuera -->
+  <div id="mobileOverlay" class="mob-overlay"></div>
+
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/helpers.js"></script>

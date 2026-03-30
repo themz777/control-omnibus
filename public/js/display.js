@@ -1,4 +1,4 @@
-const socket = io();
+﻿const socket = io();
 const displayTableBody = document.getElementById('displayTableBody');
 const alertBanner = document.getElementById('alertBanner');
 const infoBtn = document.getElementById('infoBtn');
@@ -76,7 +76,7 @@ function renderDisplayTable(records) {
             <span>${escapeHtml(record.empresa)}</span>
           </div>
         </td>
-        <td>${escapeHtml(`${record.origen} → ${record.destino}`)}</td>
+        <td>${escapeHtml(`${record.origen} â†’ ${record.destino}`)}</td>
         <td>${escapeHtml(record.fechaViaje || '-')}</td>
         <td>${escapeHtml(record.horaProgramada || '-')}</td>
         <td>${escapeHtml(record.horaReal || '-')}</td>
@@ -88,7 +88,7 @@ function renderDisplayTable(records) {
 
   const critical = records.find((r) => r.estado === 'CANCELADO' || r.estado === 'ATRASADO');
   if (critical) {
-    showAlertBanner(`ALERTA: ${critical.empresa} | ${critical.origen} → ${critical.destino} | ${critical.estado}`, critical.estado);
+    showAlertBanner(`ALERTA: ${critical.empresa} | ${critical.origen} â†’ ${critical.destino} | ${critical.estado}`, critical.estado);
   } else {
     hideAlertBanner();
   }
@@ -114,7 +114,7 @@ async function loadDisplay() {
         pdfSchedules = await schRes.json();
         console.log("PDF Schedules cargados:", pdfSchedules.length);
       } catch (e) {
-        console.error("No se pudo cargar schedules.json, usando backup vacío", e);
+        console.error("No se pudo cargar schedules.json, usando backup vacÃ­o", e);
       }
     }
     const response = await API.getVisibleRecords();
@@ -208,7 +208,7 @@ loadDisplay();
 // --- Mega-Menu Tab Switching ---
 document.querySelectorAll('.mega-tab-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Evitar que el menú se cierre al cambiar de pestaña
+    e.stopPropagation(); // Evitar que el menÃº se cierre al cambiar de pestaÃ±a
     const targetTab = btn.getAttribute('data-tab');
     
     // Actualizar botones
@@ -221,60 +221,115 @@ document.querySelectorAll('.mega-tab-btn').forEach(btn => {
   });
 });
 
-// Evitar que el click dentro del mega-menu lo cierre si usamos hover
-document.querySelector('.mega-menu')?.addEventListener('click', (e) => {
-  e.stopPropagation();
-});
 
-// --- Mobile Menu Toggle ---
-document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
-  const navLinks = document.querySelector('.nav-links');
-  if (navLinks) {
-    navLinks.classList.toggle('mobile-active');
-    document.body.classList.toggle('menu-open', navLinks.classList.contains('mobile-active'));
-    document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : '';
+// --- MOBILE DRAWER ---
+(function () {
+  const drawer   = document.getElementById('mobileDrawer');
+  const overlay  = document.getElementById('mobileOverlay');
+  const openBtn  = document.getElementById('mobileMenuBtn');
+  const closeBtn = document.getElementById('mobCloseBtn');
+
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
-});
 
-document.getElementById('closeMenuBtn')?.addEventListener('click', () => {
-  const navLinks = document.querySelector('.nav-links');
-  if (navLinks) {
-    navLinks.classList.remove('mobile-active');
-    document.body.classList.remove('menu-open');
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('active');
     document.body.style.overflow = '';
   }
-});
 
-// Toggle sub-menus on mobile clicking the link
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', (e) => {
-    if (window.innerWidth <= 992) {
-      e.preventDefault();
-      e.stopPropagation();
-      const parent = link.parentElement;
-      if (parent) {
-        const wasOpen = parent.classList.contains('mobile-open');
-        
-        // Reset ALL links and items
-        document.querySelectorAll('.nav-item').forEach(item => {
-          item.classList.remove('mobile-open');
-          item.querySelector('.nav-link')?.classList.remove('active');
-        });
-        
-        // Toggle this one
-        if (!wasOpen) {
-          parent.classList.add('mobile-open');
-          link.classList.add('active');
-          
-          // Force active on first panel if it's Institutional (no internal nav)
-          if (parent.classList.contains('has-mega')) {
-            const panels = parent.querySelectorAll('.mega-tab-panel');
-            if (panels.length > 0 && !parent.querySelector('.mega-tabs-nav')) {
-                panels[0].classList.add('active');
-            }
-          }
-        }
-      }
-    }
+  openBtn?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  overlay?.addEventListener('click', closeDrawer);
+
+  // Section tabs: Menu <-> Institucional
+  document.querySelectorAll('.mob-section-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mob-section-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const target = btn.dataset.section;
+      document.querySelectorAll('.mob-section').forEach(s => s.classList.add('hidden'));
+      const targetSection = document.getElementById('mob-section-' + target);
+      if (targetSection) targetSection.classList.remove('hidden');
+    });
   });
-});
+
+  // Sub-tabs: Buscar / Info / Empresas
+  document.querySelectorAll('.mob-sub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mob-sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const panelId = btn.dataset.panel;
+      document.querySelectorAll('.mob-panel').forEach(p => p.classList.remove('active'));
+      const panel = document.getElementById(panelId);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // Search in mobile drawer (reuses pdfSchedules from main display.js scope)
+  document.getElementById('mobBtnSearch')?.addEventListener('click', () => {
+    const origin  = (document.getElementById('mobOrigin')?.value  || '').trim().toLowerCase();
+    const dest    = (document.getElementById('mobDestination')?.value || '').trim().toLowerCase();
+    const date    = (document.getElementById('mobDate')?.value || '').trim();
+    const results = document.getElementById('mobSearchResults');
+    if (!results) return;
+
+    const filtered = (typeof pdfSchedules !== 'undefined' ? pdfSchedules : []).filter(s => {
+      const matchOrig = !origin || (s.origen || '').toLowerCase().includes(origin);
+      const matchDest = !dest   || (s.destino || '').toLowerCase().includes(dest);
+      const matchDate = !date   || (s.fecha || '') === date;
+      return matchOrig && matchDest && matchDate;
+    });
+
+    results.classList.remove('hidden');
+    if (!filtered.length) {
+      results.innerHTML = '<p style="color:#64748b;font-size:0.9rem;">Sin resultados para esa bÃºsqueda.</p>';
+      return;
+    }
+    results.innerHTML = filtered.slice(0, 10).map(s => `
+      <div style="padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;font-size:0.88rem;">
+        <strong>${escapeHtml(s.empresa || '-')}</strong><br>
+        ${escapeHtml(s.origen || '-')} &rarr; ${escapeHtml(s.destino || '-')}<br>
+        <span style="color:#64748b">${escapeHtml(s.horaProgramada || '-')}</span>
+      </div>
+    `).join('');
+  });
+
+  // Populate mobile companies list when companies cache is loaded
+  function populateMobCompanies() {
+    const grid = document.getElementById('mobCompanyLinks');
+    if (!grid || typeof companiesCache === 'undefined') return;
+    grid.innerHTML = companiesCache.map(company => {
+      if (!company.links?.length) return '';
+      const name = company.name.split('(')[0].trim();
+      const logo = company.logo ? `<img src="/assets/logos/${company.logo}" style="width:18px;height:18px;border-radius:3px;"> ` : '';
+      const links = company.links.map(link => {
+        let label = 'Web';
+        if (link.includes('facebook'))    label = 'Facebook';
+        if (link.includes('instagram'))   label = 'Instagram';
+        if (link.includes('plataforma10'))label = 'Plataforma 10';
+        return `<a href="${link}" target="_blank" style="color:#0f6fd8;font-size:0.8rem;margin-right:8px;">${label}</a>`;
+      }).join('');
+      return `<div style="padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:0.88rem;">
+        ${logo}<strong>${escapeHtml(name)}</strong><br><span style="color:#64748b">${links}</span></div>`;
+    }).join('');
+  }
+
+  // Hook into the existing fetchCompanies flow
+  const origRenderModal = window.renderModalCompanyLinks;
+  const checkInterval = setInterval(() => {
+    if (typeof companiesCache !== 'undefined' && companiesCache.length) {
+      populateMobCompanies();
+      clearInterval(checkInterval);
+    }
+  }, 500);
+})();
