@@ -310,23 +310,35 @@ document.querySelectorAll('.mega-tab-btn').forEach(btn => {
     `).join('');
   });
 
-  // Populate mobile companies list when companies cache is loaded
+  // Populate mobile companies — logo cards like the desktop Empresas section
   function populateMobCompanies() {
     const grid = document.getElementById('mobCompanyLinks');
-    if (!grid || typeof companiesCache === 'undefined') return;
+    if (!grid || !companiesCache.length) return;
+    grid.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:12px;';
     grid.innerHTML = companiesCache.map(company => {
-      if (!company.links?.length) return '';
       const name = company.name.split('(')[0].trim();
-      const logo = company.logo ? `<img src="/assets/logos/${company.logo}" style="width:18px;height:18px;border-radius:3px;"> ` : '';
-      const links = company.links.map(link => {
+      const logoSrc = company.logo ? `/assets/logos/${company.logo}` : null;
+      const links = (company.links || []).map(link => {
         let label = 'Web';
-        if (link.includes('facebook'))    label = 'Facebook';
-        if (link.includes('instagram'))   label = 'Instagram';
-        if (link.includes('plataforma10'))label = 'Plataforma 10';
-        return `<a href="${link}" target="_blank" style="color:#0f6fd8;font-size:0.8rem;margin-right:8px;">${label}</a>`;
+        if (link.includes('facebook'))     label = 'Facebook';
+        if (link.includes('instagram'))    label = 'Instagram';
+        if (link.includes('plataforma10')) label = 'P10';
+        if (link.includes('destinos'))     label = 'Destinos';
+        return `<a href="${link}" target="_blank" style="color:#0f6fd8;font-size:0.75rem;margin-right:6px;text-decoration:none">${label}</a>`;
       }).join('');
-      return `<div style="padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:0.88rem;">
-        ${logo}<strong>${escapeHtml(name)}</strong><br><span style="color:#64748b">${links}</span></div>`;
+      return `
+        <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <div style="height:90px;display:flex;align-items:center;justify-content:center;background:#f8fafc;padding:8px">
+            ${logoSrc
+              ? `<img src="${logoSrc}" alt="${escapeHtml(name)}" style="max-width:100%;max-height:74px;object-fit:contain">`
+              : `<span style="font-size:0.75rem;color:#94a3b8;text-align:center">${escapeHtml(name)}</span>`
+            }
+          </div>
+          <div style="background:#15803d;padding:6px 8px;text-align:center">
+            <span style="color:#fff;font-size:0.72rem;font-weight:700;letter-spacing:0.03em">${escapeHtml(name.toUpperCase())}</span>
+          </div>
+          ${links ? `<div style="padding:6px 8px;border-top:1px solid #f1f5f9">${links}</div>` : ''}
+        </div>`;
     }).join('');
   }
 
