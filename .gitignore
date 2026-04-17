@@ -9,3 +9,11 @@ yarn-error.log*
 .vscode/
 dist/
 build/
+
+# Archivos descargados / carpetas de cache que no forman parte del sistema
+nsalogo_files/
+*.descarga
+*.br.js
+Thumbs.db
+*.tmp
+data/*.tmp
