@@ -6,6 +6,7 @@ const infoModal = document.getElementById('infoModal');
 const closeModal = document.getElementById('closeModal');
 const modalCompanyLinks = document.getElementById('modalCompanyLinks');
 const sidebarCompanyLinks = document.getElementById('sidebarCompanyLinks');
+const mainCompanyLinks = document.getElementById('mainCompanyLinks');
 
 let companiesCache = [];
 let activeRecords = [];
@@ -58,6 +59,7 @@ const companyColors = {
 
   if (modalCompanyLinks) modalCompanyLinks.innerHTML = cardHtml;
   if (sidebarCompanyLinks) sidebarCompanyLinks.innerHTML = cardHtml;
+  if (mainCompanyLinks) mainCompanyLinks.innerHTML = cardHtml;
 }
 
 
