@@ -1,50 +1,50 @@
 [
   { 
-    "name": "NSA", 
+    "name": "EL TIGRE", 
     "active": true, 
-    "logo": "nsa_logo_v2.png",
-    "links": ["https://www.nsa.com.py/", "https://www.nsa.com.py/destinos", "https://www.plataforma10.com.py/viajes/empresas-de-omnibus/nuestra-senora-de-la-asuncion/"]
+    "logo": "el_tigre.png",
+    "links": []
   },
   { 
-    "name": "Guaireña", 
+    "name": "GUAIREÑA", 
     "active": true, 
     "logo": "guairena.png.jpeg",
-    "links": ["https://empresaguairena.com.py/", "https://empresaguairena.com.py/destinos/", "https://empresaguairena.com.py/agencias/"]
+    "links": []
   },
   { 
-    "name": "El Tigre", 
-    "active": true, 
-    "logo": "",
-    "links": ["https://www.plataforma10.com.py/viajes/empresas-de-omnibus/el-tigre/", "https://www.facebook.com/eltigrepy/"]
-  },
-  { 
-    "name": "Crucero del Sur", 
-    "active": true, 
-    "logo": "crucero_del_sur.png.jpeg",
-    "links": ["https://www.plataforma10.com.py/viajes/empresas-de-omnibus/crucero-del-sur-de-turismo-parque/", "https://www.facebook.com/CruceroDelSurSrl/"]
-  },
-  { 
-    "name": "Rio Internacional", 
-    "active": true, 
-    "logo": "",
-    "links": ["https://www.plataforma10.com.py/viajes/empresas-de-omnibus/rio-internacional/"]
-  },
-  { 
-    "name": "Cometa del Amambay", 
-    "active": true, 
-    "logo": "cometa_amambay.png.jpeg",
-    "links": ["https://www.instagram.com/c.amambay_py/"]
-  },
-  { 
-    "name": "Itapua Poty", 
+    "name": "ITAPUA POTY", 
     "active": true, 
     "logo": "itapua_poty.png.jpeg",
     "links": []
   },
   { 
-    "name": "San Juan SRL", 
+    "name": "NASA", 
+    "active": true, 
+    "logo": "nasa.png",
+    "links": []
+  },
+  { 
+    "name": "NSE", 
+    "active": true, 
+    "logo": "encarnacion.png.jpeg",
+    "links": []
+  },
+  { 
+    "name": "SAN JUAN S.R.L.", 
     "active": true, 
     "logo": "san_juan.png.jpeg",
+    "links": []
+  },
+  { 
+    "name": "COMETA DEL AMAMBAY", 
+    "active": true, 
+    "logo": "cometa_amambay.png.jpeg",
+    "links": []
+  },
+  { 
+    "name": "CRUCERO DEL SUR", 
+    "active": true, 
+    "logo": "crucero_del_sur.png.jpeg",
     "links": []
   }
 ]

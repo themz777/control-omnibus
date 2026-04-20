@@ -30,16 +30,27 @@ function renderModalCompanyLinks() {
       return `<a href="${link}" class="empresa-card-link" target="_blank">${label}</a>`;
     }).join('');
 
+const companyColors = {
+      'EL TIGRE': '#e80026',
+      'GUAIREÑA': '#942220',
+      'ITAPUA POTY': '#009b55',
+      'NASA': '#e10515',
+      'NSE': '#1e3092',
+      'SAN JUAN S.R.L.': '#0abcf7',
+      'COMETA DEL AMAMBAY': '#00d55e',
+      'CRUCERO DEL SUR': '#0a9add'
+    };
+    const footerColor = companyColors[nameOnly.toUpperCase()] || '#15803d';
+
     return `
       <div class="empresa-card">
         <div class="empresa-card-logo">
           ${logoSrc
-            ? `<img src="${logoSrc}" alt="${escapeHtml(nameOnly)}">`
+            ? `<img src="${logoSrc}" alt="${escapeHtml(nameOnly)}" onerror="this.outerHTML='<span class=\\'empresa-card-initials\\'>${escapeHtml(nameOnly.substring(0,2))}</span>'">`
             : `<span class="empresa-card-initials">${escapeHtml(nameOnly.substring(0,2))}</span>`
           }
         </div>
-        <div class="empresa-card-name">${escapeHtml(nameOnly.toUpperCase())}</div>
-        ${links ? `<div class="empresa-card-links">${links}</div>` : ''}
+        <div class="empresa-card-name" style="background: ${footerColor}!important;">${escapeHtml(nameOnly.toUpperCase())}</div>
       </div>
     `;
   }).join('');
@@ -329,18 +340,24 @@ document.querySelectorAll('.mega-tab-btn').forEach(btn => {
         if (link.includes('destinos'))     label = 'Destinos';
         return `<a href="${link}" target="_blank" style="color:#0f6fd8;font-size:0.75rem;margin-right:6px;text-decoration:none">${label}</a>`;
       }).join('');
+      const companyColors = {
+        'EL TIGRE': '#e80026', 'GUAIREÑA': '#942220', 'ITAPUA POTY': '#009b55',
+        'NASA': '#e10515', 'NSE': '#1e3092', 'SAN JUAN S.R.L.': '#0abcf7',
+        'COMETA DEL AMAMBAY': '#00d55e', 'CRUCERO DEL SUR': '#0a9add'
+      };
+      const footerColor = companyColors[name.toUpperCase()] || '#15803d';
+
       return `
-        <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-          <div style="height:90px;display:flex;align-items:center;justify-content:center;background:#f8fafc;padding:8px">
+        <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.08);transition: transform 0.2s;">
+          <div style="height:120px;display:flex;align-items:center;justify-content:center;background:#ffffff;padding:12px">
             ${logoSrc
-              ? `<img src="${logoSrc}" alt="${escapeHtml(name)}" style="max-width:100%;max-height:74px;object-fit:contain">`
-              : `<span style="font-size:0.75rem;color:#94a3b8;text-align:center">${escapeHtml(name)}</span>`
+              ? `<img src="${logoSrc}" alt="${escapeHtml(name)}" onerror="this.outerHTML='<span style=\\'font-size:1.4rem;color:#94a3b8;font-weight:bold;\\'>${escapeHtml(name.substring(0,2))}</span>'" style="max-width:100%;max-height:86px;object-fit:contain">`
+              : `<span style="font-size:1.4rem;color:#94a3b8;font-weight:bold;text-align:center">${escapeHtml(name.substring(0,2))}</span>`
             }
           </div>
-          <div style="background:#15803d;padding:6px 8px;text-align:center">
-            <span style="color:#fff;font-size:0.72rem;font-weight:700;letter-spacing:0.03em">${escapeHtml(name.toUpperCase())}</span>
+          <div style="background:${footerColor};padding:10px 8px;text-align:center">
+            <span style="color:#fff;font-size:0.8rem;font-weight:700;letter-spacing:0.04em;font-family:'Outfit';">${escapeHtml(name.toUpperCase())}</span>
           </div>
-          ${links ? `<div style="padding:6px 8px;border-top:1px solid #f1f5f9">${links}</div>` : ''}
         </div>`;
     }).join('');
   }
