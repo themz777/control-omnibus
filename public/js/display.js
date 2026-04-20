@@ -34,11 +34,11 @@ const companyColors = {
       'EL TIGRE': '#e80026',
       'GUAIREÑA': '#942220',
       'ITAPUA POTY': '#009b55',
-      'NASA': '#e10515',
-      'NSE': '#1e3092',
-      'SAN JUAN S.R.L.': '#0abcf7',
+      'NSA': '#1e3092',
+      'SAN JUAN SRL': '#0abcf7',
       'COMETA DEL AMAMBAY': '#00d55e',
-      'CRUCERO DEL SUR': '#0a9add'
+      'CRUCERO DEL SUR': '#0a9add',
+      'RIO INTERNACIONAL': '#f59e0b'
     };
     const footerColor = companyColors[nameOnly.toUpperCase()] || '#15803d';
 
@@ -51,6 +51,7 @@ const companyColors = {
           }
         </div>
         <div class="empresa-card-name" style="background: ${footerColor}!important;">${escapeHtml(nameOnly.toUpperCase())}</div>
+        ${links ? `<div class="empresa-card-links">${links}</div>` : ''}
       </div>
     `;
   }).join('');
@@ -342,7 +343,7 @@ document.querySelectorAll('.mega-tab-btn').forEach(btn => {
       }).join('');
       const companyColors = {
         'EL TIGRE': '#e80026', 'GUAIREÑA': '#942220', 'ITAPUA POTY': '#009b55',
-        'NASA': '#e10515', 'NSE': '#1e3092', 'SAN JUAN S.R.L.': '#0abcf7',
+        'NSA': '#1e3092', 'SAN JUAN SRL': '#0abcf7', 'RIO INTERNACIONAL': '#f59e0b',
         'COMETA DEL AMAMBAY': '#00d55e', 'CRUCERO DEL SUR': '#0a9add'
       };
       const footerColor = companyColors[name.toUpperCase()] || '#15803d';
@@ -358,6 +359,7 @@ document.querySelectorAll('.mega-tab-btn').forEach(btn => {
           <div style="background:${footerColor};padding:10px 8px;text-align:center">
             <span style="color:#fff;font-size:0.8rem;font-weight:700;letter-spacing:0.04em;font-family:'Outfit';">${escapeHtml(name.toUpperCase())}</span>
           </div>
+          ${links ? `<div style="padding:6px 8px;border-top:1px solid #f1f5f9">${links}</div>` : ''}
         </div>`;
     }).join('');
   }
