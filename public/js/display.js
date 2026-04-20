@@ -79,7 +79,7 @@ function hideAlertBanner() {
 
 function renderDisplayTable(records) {
   if (!records.length) {
-    displayTableBody.innerHTML = '<tr><td colspan="7" class="empty-cell">No hay salidas activas en este momento.</td></tr>';
+    displayTableBody.innerHTML = '<tr><td colspan="6" class="empty-cell">No hay salidas activas en este momento.</td></tr>';
     hideAlertBanner();
     return;
   }
@@ -95,7 +95,6 @@ function renderDisplayTable(records) {
         </td>
         <td>${escapeHtml(`${record.origen} â†’ ${record.destino}`)}</td>
         <td>${escapeHtml(record.fechaViaje || '-')}</td>
-        <td>${escapeHtml(record.horaProgramada || '-')}</td>
         <td>${escapeHtml(record.horaReal || '-')}</td>
         <td>${statusBadge(record.estado)}</td>
         <td>${escapeHtml(record.observacion || '-')}</td>
