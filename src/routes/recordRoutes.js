@@ -6,6 +6,7 @@ const {
   createRecord,
   updateRecord,
   deleteRecord,
+  deleteAllRecords,
   toPublicRecord
 } = require('../services/recordService');
 
@@ -38,6 +39,18 @@ router.put('/:id', requireAuth, (req, res, next) => {
     io.emit('records:updated', getVisibleRecords().map(toPublicRecord));
     io.emit('dashboard:refresh');
     res.json({ ok: true, data: record });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.delete('/', requireAuth, (req, res, next) => {
+  try {
+    const result = deleteAllRecords();
+    const io = req.app.get('io');
+    io.emit('records:updated', []);
+    io.emit('dashboard:refresh');
+    res.json({ ok: true, data: result });
   } catch (error) {
     next(error);
   }

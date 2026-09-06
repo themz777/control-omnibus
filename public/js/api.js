@@ -36,8 +36,14 @@ const API = {
   async deleteRecord(id) {
     return this.request(`/api/records/${id}`, { method: 'DELETE', headers: this.getHeaders(true) });
   },
+  async deleteAllRecords() {
+    return this.request('/api/records', { method: 'DELETE', headers: this.getHeaders(true) });
+  },
   async getSummary() { return this.request('/api/dashboard/summary'); },
   async getHistory() { return this.request('/api/history', { headers: this.getHeaders(true) }); },
   async getNotifications() { return this.request('/api/notifications', { headers: this.getHeaders(true) }); },
+  async clearNotifications() {
+    return this.request('/api/notifications', { method: 'DELETE', headers: this.getHeaders(true) });
+  },
   async getCompanies() { return this.request('/api/dashboard/companies'); }
 };

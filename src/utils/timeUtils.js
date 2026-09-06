@@ -12,13 +12,6 @@ function parseTimeToMinutes(timeString) {
   return hours * 60 + minutes;
 }
 
-function calculateDelayMinutes(horaProgramada, horaReal) {
-  const p = parseTimeToMinutes(horaProgramada);
-  const r = parseTimeToMinutes(horaReal);
-  if (p === null || r === null) return 0;
-  return r - p;
-}
-
 /** Timestamp ISO del momento actual (UTC). */
 function nowIso() {
   return new Date().toISOString();
@@ -37,7 +30,7 @@ function nowParaguay() {
 
 /**
  * Hora actual en Paraguay formateada como "HH:mm".
- * Util para comparar con horaProgramada/horaReal de los registros.
+ * Util para comparar con horaProgramada de los registros.
  */
 function currentTimeParaguay() {
   return new Date().toLocaleString('es-PY', {
@@ -71,7 +64,6 @@ function minutesUntilDateTime(fecha, hora) {
 module.exports = {
   TZ_PARAGUAY,
   parseTimeToMinutes,
-  calculateDelayMinutes,
   nowIso,
   nowParaguay,
   currentTimeParaguay,

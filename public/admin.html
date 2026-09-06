@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin - Sistema Terminal CDE</title>
-  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/styles.css?v=5.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -57,10 +57,6 @@
             <input type="time" id="horaProgramada" required />
           </div>
           <div class="form-group">
-            <label for="horaReal">Hora real</label>
-            <input type="time" id="horaReal" />
-          </div>
-          <div class="form-group">
             <label for="estado">Estado</label>
             <select id="estado">
               <option value="PROGRAMADO">PROGRAMADO</option>
@@ -80,12 +76,12 @@
             <input type="text" id="observacion" placeholder="Ej.: Demora por tráfico" />
           </div>
           <div class="form-group">
-            <label for="nombrePasajero">Nombre del pasajero</label>
-            <input type="text" id="nombrePasajero" placeholder="Carlos Gómez" required />
+            <label for="nombrePasajero">Nombre del pasajero (opcional)</label>
+            <input type="text" id="nombrePasajero" placeholder="Carlos Gómez" />
           </div>
           <div class="form-group">
-            <label for="telefonoUsuario">WhatsApp del usuario</label>
-            <input type="text" id="telefonoUsuario" placeholder="595981234567" required />
+            <label for="telefonoUsuario">WhatsApp del usuario (opcional)</label>
+            <input type="text" id="telefonoUsuario" placeholder="595981234567" />
           </div>
           <div class="form-actions form-group-wide">
             <button type="submit" class="btn btn-primary">Guardar viaje</button>
@@ -119,7 +115,10 @@
     </section>
 
     <section class="panel-card">
-      <div class="card-header"><h2>Viajes registrados</h2></div>
+      <div class="card-header">
+        <h2>Viajes registrados</h2>
+        <button id="clearRecordsBtn" class="btn btn-small btn-danger" type="button">Eliminar todos</button>
+      </div>
       <div class="table-wrapper">
         <table class="data-table">
           <thead>
@@ -127,8 +126,7 @@
               <th>Empresa</th>
               <th>Ruta</th>
               <th>Fecha</th>
-              <th>Hora prog.</th>
-              <th>Hora real</th>
+              <th>Hora programada</th>
               <th>Estado</th>
               <th>Pasajero</th>
               <th>WhatsApp</th>
@@ -147,15 +145,18 @@
         <div id="historyList" class="list-block"></div>
       </div>
       <div class="panel-card">
-        <div class="card-header"><h2>Notificaciones recientes</h2></div>
+        <div class="card-header">
+          <h2>Notificaciones recientes</h2>
+          <button id="clearNotificationsBtn" class="btn btn-small btn-danger" type="button">Eliminar notificaciones</button>
+        </div>
         <div id="notificationList" class="list-block"></div>
       </div>
     </section>
   </main>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/helpers.js"></script>
-  <script src="/js/api.js"></script>
-  <script src="/js/admin.js"></script>
+  <script src="/js/helpers.js?v=5.0"></script>
+  <script src="/js/api.js?v=5.0"></script>
+  <script src="/js/admin.js?v=5.0"></script>
 </body>
 </html>

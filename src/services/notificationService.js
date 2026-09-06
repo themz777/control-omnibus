@@ -23,4 +23,22 @@ function getAllNotifications() {
   return readJson(NOTIFICATIONS_PATH, []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 }
 
-module.exports = { addNotification, getAllNotifications };
+function clearNotifications() {
+  const notifications = readJson(NOTIFICATIONS_PATH, []);
+  writeJson(NOTIFICATIONS_PATH, []);
+  return notifications.length;
+}
+
+function deleteNotificationsForRecord(recordId) {
+  const notifications = readJson(NOTIFICATIONS_PATH, []);
+  const remaining = notifications.filter((item) => item.recordId !== recordId);
+  writeJson(NOTIFICATIONS_PATH, remaining);
+  return notifications.length - remaining.length;
+}
+
+module.exports = {
+  addNotification,
+  getAllNotifications,
+  clearNotifications,
+  deleteNotificationsForRecord
+};

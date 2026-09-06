@@ -1,12 +1,13 @@
 const path = require('path');
 const { readJson, writeJson } = require('../utils/fileStore');
 const { generateId } = require('../utils/idGenerator');
-const { nowIso, calculateDelayMinutes } = require('../utils/timeUtils');
+const { nowIso } = require('../utils/timeUtils');
 const { validateRecordInput, normalizePhone } = require('../utils/validators');
 const { ESTADOS, EVENTOS } = require('../config/constants');
 const { delayThresholdMinutes } = require('../config/systemConfig');
 const { addHistoryEntry } = require('./historyService');
 const { isValidCompany } = require('./companyService');
+const { clearNotifications, deleteNotificationsForRecord } = require('./notificationService');
 
 const RECORDS_PATH = path.resolve(__dirname, '../data/records.json');
 
@@ -30,7 +31,6 @@ function toPublicRecord(record) {
     destino: record.destino,
     fechaViaje: record.fechaViaje || '',
     horaProgramada: record.horaProgramada,
-    horaReal: record.horaReal,
     anden: record.anden,
     estado: record.estado,
     evento: record.evento,
@@ -45,16 +45,9 @@ function toPublicRecord(record) {
 
 function normalizeRecordPayload(data, existingRecord = null) {
   const horaProgramada = String(data.horaProgramada || '').trim();
-  const horaReal = String(data.horaReal || '').trim();
   const fechaViaje = String(data.fechaViaje || '').trim();
   const minutosAtrasoManual = Number(data.minutosAtrasoManual || 0);
-
-  let puntualidadMin = 0;
-  if (horaProgramada && horaReal) {
-    puntualidadMin = calculateDelayMinutes(horaProgramada, horaReal);
-  } else if (minutosAtrasoManual > 0) {
-    puntualidadMin = minutosAtrasoManual;
-  }
+  const puntualidadMin = minutosAtrasoManual > 0 ? minutosAtrasoManual : 0;
 
   let estado = String(data.estado || '').trim().toUpperCase();
   let evento = EVENTOS.NINGUNO;
@@ -66,8 +59,6 @@ function normalizeRecordPayload(data, existingRecord = null) {
   } else if (estado === ESTADOS.ATRASADO || puntualidadMin >= delayThresholdMinutes) {
     estado = ESTADOS.ATRASADO;
     evento = EVENTOS.ATRASO;
-  } else if (horaReal && puntualidadMin <= 0) {
-    estado = ESTADOS.EN_HORA;
   }
 
   return {
@@ -76,7 +67,6 @@ function normalizeRecordPayload(data, existingRecord = null) {
     destino: String(data.destino || '').trim(),
     fechaViaje,
     horaProgramada,
-    horaReal,
     anden: String(data.anden || '').trim(),
     estado,
     evento,
@@ -128,7 +118,7 @@ function createRecord(data) {
 
 const CAMPOS_ACTUALIZABLES = [
   'empresa', 'origen', 'destino', 'fechaViaje', 'horaProgramada',
-  'horaReal', 'anden', 'estado', 'observacion', 'minutosAtrasoManual',
+  'anden', 'estado', 'observacion', 'minutosAtrasoManual',
   'nombrePasajero', 'telefonoUsuario'
 ];
 
@@ -189,6 +179,7 @@ function deleteRecord(id) {
 
   const filtered = records.filter((item) => item.id !== id);
   writeJson(RECORDS_PATH, filtered);
+  deleteNotificationsForRecord(id);
   addHistoryEntry({
     recordId: id,
     accion: 'ELIMINACION_VIAJE',
@@ -196,6 +187,19 @@ function deleteRecord(id) {
     usuario: 'admin'
   });
   return record;
+}
+
+function deleteAllRecords() {
+  const records = getAllRecords();
+  writeJson(RECORDS_PATH, []);
+  clearNotifications();
+  addHistoryEntry({
+    recordId: null,
+    accion: 'LIMPIEZA_VIAJES',
+    descripcion: `Se eliminaron ${records.length} viajes registrados`,
+    usuario: 'admin'
+  });
+  return { deleted: records.length };
 }
 
 function saveAllRecords(records) {
@@ -210,5 +214,6 @@ module.exports = {
   createRecord,
   updateRecord,
   deleteRecord,
+  deleteAllRecords,
   saveAllRecords
 };

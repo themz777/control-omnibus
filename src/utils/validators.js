@@ -9,6 +9,7 @@ function validateParaguayPhone(phone) {
 
 function validateRecordInput(data) {
   const errors = [];
+  const telefonoUsuario = String(data.telefonoUsuario || '').trim();
 
   if (!data.empresa || String(data.empresa).trim() === '') errors.push('La empresa es obligatoria');
   if (!data.origen || String(data.origen).trim() === '') errors.push('El origen es obligatorio');
@@ -26,11 +27,8 @@ function validateRecordInput(data) {
   if (!data.horaProgramada || !/^\d{2}:\d{2}$/.test(String(data.horaProgramada))) {
     errors.push('La hora programada es obligatoria y debe tener formato HH:mm');
   }
-  if (!data.nombrePasajero || String(data.nombrePasajero).trim() === '') {
-    errors.push('El nombre del pasajero es obligatorio');
-  }
-  if (!data.telefonoUsuario || !validateParaguayPhone(data.telefonoUsuario)) {
-    errors.push('El teléfono del usuario es obligatorio y debe ser numérico');
+  if (telefonoUsuario && !validateParaguayPhone(telefonoUsuario)) {
+    errors.push('El teléfono del usuario debe ser numérico y tener entre 10 y 15 dígitos');
   }
   if (
     data.origen && data.destino &&

@@ -77,6 +77,10 @@ function hideAlertBanner() {
   alertBanner.className = 'alert-banner hidden';
 }
 
+function formatRoute(record) {
+  return `${record.origen || '-'} \u2192 ${record.destino || '-'}`;
+}
+
 function renderDisplayTable(records) {
   if (!records.length) {
     displayTableBody.innerHTML = '<tr><td colspan="6" class="empty-cell">No hay salidas activas en este momento.</td></tr>';
@@ -93,9 +97,9 @@ function renderDisplayTable(records) {
             <span>${escapeHtml(record.empresa)}</span>
           </div>
         </td>
-        <td>${escapeHtml(`${record.origen} â†’ ${record.destino}`)}</td>
+        <td>${escapeHtml(formatRoute(record))}</td>
         <td>${escapeHtml(record.fechaViaje || '-')}</td>
-        <td>${escapeHtml(record.horaReal || '-')}</td>
+        <td>${escapeHtml(record.horaProgramada || '-')}</td>
         <td>${statusBadge(record.estado)}</td>
         <td>${escapeHtml(record.observacion || '-')}</td>
       </tr>
@@ -104,7 +108,7 @@ function renderDisplayTable(records) {
 
   const critical = records.find((r) => r.estado === 'CANCELADO' || r.estado === 'ATRASADO');
   if (critical) {
-    showAlertBanner(`ALERTA: ${critical.empresa} | ${critical.origen} â†’ ${critical.destino} | ${critical.estado}`, critical.estado);
+    showAlertBanner(`ALERTA: ${critical.empresa} | ${formatRoute(critical)} | ${critical.estado}`, critical.estado);
   } else {
     hideAlertBanner();
   }
@@ -130,7 +134,7 @@ async function loadDisplay() {
         pdfSchedules = await schRes.json();
         console.log("PDF Schedules cargados:", pdfSchedules.length);
       } catch (e) {
-        console.error("No se pudo cargar schedules.json, usando backup vacÃ­o", e);
+        console.error("No se pudo cargar schedules.json, usando backup vacio", e);
       }
     }
     const response = await API.getVisibleRecords();
@@ -224,7 +228,7 @@ loadDisplay();
 // --- Mega-Menu Tab Switching ---
 document.querySelectorAll('.mega-tab-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Evitar que el menÃº se cierre al cambiar de pestaÃ±a
+    e.stopPropagation(); // Evitar que el menu se cierre al cambiar de pestana
     const targetTab = btn.getAttribute('data-tab');
     
     // Actualizar botones

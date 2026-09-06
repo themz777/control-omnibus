@@ -7,6 +7,8 @@ const historyList = document.getElementById('historyList');
 const notificationList = document.getElementById('notificationList');
 const logoutBtn = document.getElementById('logoutBtn');
 const cancelEditBtn = document.getElementById('cancelEditBtn');
+const clearRecordsBtn = document.getElementById('clearRecordsBtn');
+const clearNotificationsBtn = document.getElementById('clearNotificationsBtn');
 const formTitle = document.getElementById('formTitle');
 const filterEmpresa = document.getElementById('filterEmpresa');
 const filterEstado = document.getElementById('filterEstado');
@@ -39,7 +41,6 @@ function getFormData() {
     destino: document.getElementById('destino').value.trim(),
     fechaViaje: document.getElementById('fechaViaje').value,
     horaProgramada: document.getElementById('horaProgramada').value,
-    horaReal: document.getElementById('horaReal').value,
     estado: document.getElementById('estado').value,
     minutosAtrasoManual: document.getElementById('minutosAtrasoManual').value,
     observacion: document.getElementById('observacion').value.trim(),
@@ -84,7 +85,7 @@ function applyFilters(records) {
 function renderTable(records) {
   const filtered = applyFilters(records);
   if (!filtered.length) {
-    recordsTableBody.innerHTML = '<tr><td colspan="10" class="empty-cell">No hay viajes registrados.</td></tr>';
+    recordsTableBody.innerHTML = '<tr><td colspan="9" class="empty-cell">No hay viajes registrados.</td></tr>';
     return;
   }
 
@@ -98,18 +99,17 @@ function renderTable(records) {
             <span>${escapeHtml(record.empresa)}</span>
           </div>
         </td>
-        <td>${textCell(`${record.origen} → ${record.destino}`)}</td>
+        <td>${textCell(`${record.origen} \u2192 ${record.destino}`)}</td>
         <td>${textCell(record.fechaViaje || '-')}</td>
         <td>${textCell(record.horaProgramada || '-')}</td>
-        <td>${textCell(record.horaReal || '-')}</td>
         <td>${statusBadge(record.estado)}</td>
         <td>${textCell(record.nombrePasajero || '-')}</td>
         <td>${textCell(record.telefonoUsuario || '-')}</td>
         <td>${textCell(`${record.puntualidadMin ?? 0} min`)}</td>
         <td>
           <div class="table-actions">
-            <button class="btn btn-small btn-secondary" onclick="editRecord('${escapeHtml(record.id)}')">Editar</button>
-            <button class="btn btn-small btn-danger" onclick="removeRecord('${escapeHtml(record.id)}')">Eliminar</button>
+            <button class="btn btn-small btn-secondary" type="button" data-action="edit" data-id="${escapeHtml(record.id)}">Editar</button>
+            <button class="btn btn-small btn-danger" type="button" data-action="delete" data-id="${escapeHtml(record.id)}">Eliminar</button>
           </div>
         </td>
       </tr>
@@ -202,7 +202,6 @@ window.editRecord = function editRecord(id) {
   document.getElementById('destino').value = record.destino || '';
   document.getElementById('fechaViaje').value = record.fechaViaje || '';
   document.getElementById('horaProgramada').value = record.horaProgramada || '';
-  document.getElementById('horaReal').value = record.horaReal || '';
   document.getElementById('estado').value = record.estado || 'PROGRAMADO';
   document.getElementById('minutosAtrasoManual').value = record.minutosAtrasoManual || 0;
   document.getElementById('observacion').value = record.observacion || '';
@@ -216,12 +215,39 @@ window.removeRecord = async function removeRecord(id) {
   if (!window.confirm('¿Deseas eliminar este viaje?')) return;
   try {
     await API.deleteRecord(id);
+    allRecordsCache = allRecordsCache.filter((record) => record.id !== id);
+    renderTable(allRecordsCache);
     showMessage('Viaje eliminado correctamente');
     await loadAll();
   } catch (error) {
     showMessage(error.message, 'error');
   }
 };
+
+async function clearRecords() {
+  if (!window.confirm('¿Deseas eliminar todos los viajes registrados?')) return;
+  try {
+    await API.deleteAllRecords();
+    allRecordsCache = [];
+    renderTable(allRecordsCache);
+    showMessage('Viajes registrados eliminados correctamente');
+    await loadAll();
+  } catch (error) {
+    showMessage(error.message, 'error');
+  }
+}
+
+async function clearNotifications() {
+  if (!window.confirm('¿Deseas eliminar las notificaciones recientes?')) return;
+  try {
+    await API.clearNotifications();
+    renderNotifications([]);
+    showMessage('Notificaciones recientes eliminadas correctamente');
+    await Promise.all([loadSummary(), loadNotifications()]);
+  } catch (error) {
+    showMessage(error.message, 'error');
+  }
+}
 
 recordForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -243,6 +269,14 @@ recordForm?.addEventListener('submit', async (event) => {
 });
 
 cancelEditBtn?.addEventListener('click', resetForm);
+clearRecordsBtn?.addEventListener('click', clearRecords);
+clearNotificationsBtn?.addEventListener('click', clearNotifications);
+recordsTableBody?.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-action][data-id]');
+  if (!button) return;
+  if (button.dataset.action === 'edit') window.editRecord(button.dataset.id);
+  if (button.dataset.action === 'delete') window.removeRecord(button.dataset.id);
+});
 logoutBtn?.addEventListener('click', () => {
   localStorage.removeItem('admin_token');
   localStorage.removeItem('admin_user');

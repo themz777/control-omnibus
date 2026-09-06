@@ -929,7 +929,7 @@ input:focus, select:focus { border-color: var(--input-focus); box-shadow: 0 0 0 
 }
 
 /* ===========================================
-   DESKTOP NAV â€” Solo para pantallas >= 993px
+   DESKTOP NAV - Solo para pantallas >= 993px
    =========================================== */
 @media (min-width: 993px) {
 
